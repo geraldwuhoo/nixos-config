@@ -64,6 +64,10 @@
       "vim.easymotion" = true;
       "vim.leader" = "<space>";
 
+      # nix
+      "nix.enableLanguageServer" = true;
+      "nix.formatterPath" = "/run/current-system/sw/bin/nixfmt";
+
       # Begone telemetry
       "redhat.telemetry.enabled" = false;
     };
