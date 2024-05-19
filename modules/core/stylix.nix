@@ -13,8 +13,8 @@
         package = config.stylix.fonts.sansSerif.package;
       };
       monospace = {
-        name = "DejaVu Sans Mono";
-        package = config.stylix.fonts.sansSerif.package;
+        name = "DejaVu Sans Mono for Powerline";
+        package = pkgs.powerline-fonts;
       };
       sizes = {
         applications = 9;
