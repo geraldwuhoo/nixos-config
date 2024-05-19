@@ -60,4 +60,6 @@
     enable = true;
     preset = "HD800S (Oratory1990)";
   };
+
+  programs.k9s.enable = true;
 }

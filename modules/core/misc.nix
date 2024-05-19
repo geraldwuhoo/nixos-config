@@ -96,7 +96,6 @@
     ungoogled-chromium
     unstable.feishin
     unstable.gitlab-ci-local
-    unstable.k9s
     unstable.planify
     unzip
     velero
