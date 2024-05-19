@@ -129,14 +129,6 @@
       " Window swap plugin
       Plugin 'wesQ3/vim-windowswap'
 
-      " latex-live-preview plugin
-      " Plugin 'xuhdev/vim-latex-live-preview'
-      " let g:livepreview_previewer = 'zathura'
-      " let g:livepreview_engine = 'xelatex'
-      " set updatetime=1000
-      " noremap <C-p> :LLPStartPreview<CR>
-      " noremap <C-o> :LLPStartPreview 
-
       " goyo plugin (reading mode)
       Plugin 'junegunn/goyo.vim'
       map <Leader>o :Goyo \| set linebreak<CR>
