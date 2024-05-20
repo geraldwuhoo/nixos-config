@@ -33,7 +33,14 @@
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
-        unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+        unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+            # VSCode extensions
+            "vscode-extension-MS-python-vscode-pylance"
+            "vscode-extension-signageos-signageos-vscode-sops"
+          ];
+        };
       };
       pkgs = nixpkgs.legacyPackages.${system};
     in {

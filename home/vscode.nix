@@ -4,8 +4,9 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    # Use unstable Codium package + extensions for latest versions
+    package = pkgs.unstable.vscodium;
+    extensions = with pkgs.unstable.vscode-extensions; [
       # Vim keybindings
       vscodevim.vim
 
@@ -24,7 +25,7 @@
       # Python
       ms-python.python
       ms-python.isort
-      ms-python.vscode-pylance
+      ms-python.vscode-pylance # unfree
       ms-python.black-formatter
 
       # Containers/Kubernetes
@@ -34,6 +35,8 @@
       # IaC
       hashicorp.terraform
       redhat.vscode-yaml
+      redhat.ansible
+      signageos.signageos-vscode-sops # unfree (no LICENSE in upstream)
 
       # CSV
       mechatroner.rainbow-csv

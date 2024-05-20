@@ -75,7 +75,6 @@
     redshift
     rhash
     ripgrep
-    rustup
     s3cmd
     signal-desktop
     sonixd

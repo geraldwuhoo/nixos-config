@@ -63,4 +63,5 @@
   };
 
   programs.k9s.enable = true;
+  programs.btop.enable = true;
 }
