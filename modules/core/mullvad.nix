@@ -1,6 +1,13 @@
-{ ... }: {
+{ pkgs, ... }: {
+  # Get Mullvad browser as well
+  environment.systemPackages = with pkgs; [ mullvad-browser ];
+
   # Enable Mullvad VPN daemon
-  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn = {
+    enable = true;
+    # Use full Mullvad GUI in addition to CLI
+    package = pkgs.mullvad-vpn;
+  };
 
   # Allow local network to bypass Mullvad
   networking.nftables = {

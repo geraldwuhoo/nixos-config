@@ -56,8 +56,6 @@
     lsof
     mediainfo
     mpv
-    mullvad-browser
-    mullvad-vpn
     ncdu
     neofetch
     nerdfonts
@@ -89,7 +87,6 @@
     tealdeer
     tmux
     tmuxinator
-    tor
     tor-browser
     tree
     ueberzug
@@ -125,5 +122,11 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+  };
+
+  services.tor = {
+    enable = true;
+    relay.enable = false;
+    client.enable = true;
   };
 }
