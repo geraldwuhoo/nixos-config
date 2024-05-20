@@ -1,4 +1,4 @@
-alias ls="exa --color=auto --group-directories-first --icons"
+alias ls="eza --color=auto --group-directories-first"
 
 flashortho() {
 	echo -e "\nPUT KEYBOARD INTO BOOTLOADER MODE NOW!\n"

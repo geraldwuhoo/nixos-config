@@ -2,6 +2,7 @@
   imports = [
     ./alacritty.nix
     ./direnv.nix
+    ./eza.nix
     ./lf.nix
     ./plasma.nix
     ./thunderbird.nix
