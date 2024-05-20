@@ -31,9 +31,6 @@
       "steam"
       "steam-original"
       "steam-run"
-
-      # VSCode extensions
-      "vscode-extension-MS-python-vscode-pylance"
     ];
 
   networking.networkmanager.enable = true;

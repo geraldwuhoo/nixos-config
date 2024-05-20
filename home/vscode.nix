@@ -5,7 +5,7 @@
   programs.vscode = {
     enable = true;
     # Use unstable Codium package + extensions for latest versions
-    package = pkgs.unstable.vscodium;
+    package = pkgs.unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
     extensions = with pkgs.unstable.vscode-extensions; [
       # Vim keybindings
       vscodevim.vim
@@ -52,8 +52,11 @@
       "workbench.iconTheme" = "material-icon-theme";
 
       # Mandatory for high refresh screens
+      "editor.cursorBlinking" = "smooth";
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.smoothScrolling" = true;
+      "workbench.list.smoothScrolling" = true;
+      "terminal.integrated.smoothScrolling" = true;
 
       # D E N S I T Y
       "editor.fontSize" = 14;
@@ -63,13 +66,14 @@
       "window.zoomLevel" = -1.5;
 
       # vim niceties
-      "vim.smartRelativeLine" = true;
       "editor.lineNumbers" = "relative";
+      "vim.smartRelativeLine" = true;
       "vim.easymotion" = true;
       "vim.leader" = "<space>";
 
       # nix
       "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
       "nix.formatterPath" = "/run/current-system/sw/bin/nixfmt";
 
       # Begone telemetry

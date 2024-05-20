@@ -1,4 +1,5 @@
 { pkgs, config, ... }: {
+  # Hardware acceleration
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -10,6 +11,8 @@
     ];
   };
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  # NVIDIA settings
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
