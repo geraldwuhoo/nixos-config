@@ -58,7 +58,6 @@
     mpv
     ncdu
     neofetch
-    nerdfonts
     nil
     nixfmt
     nixpkgs-fmt
@@ -129,4 +128,7 @@
     relay.enable = false;
     client.enable = true;
   };
+
+  fonts.packages = with pkgs;
+    [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 }
