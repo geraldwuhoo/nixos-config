@@ -49,14 +49,15 @@
       "workbench.iconTheme" = "material-icon-theme";
 
       # Mandatory for high refresh screens
-      "editor.smoothScrolling" = true;
       "editor.cursorSmoothCaretAnimation" = "on";
+      "editor.smoothScrolling" = true;
 
       # D E N S I T Y
+      "editor.fontSize" = 14;
       "editor.minimap.enabled" = false;
-      "window.zoomLevel" = -1;
       "editor.wordWrap" = "on";
       "window.menuBarVisibility" = "toggle";
+      "window.zoomLevel" = -1.5;
 
       # vim niceties
       "vim.smartRelativeLine" = true;
