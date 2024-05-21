@@ -64,4 +64,6 @@
 
   programs.k9s.enable = true;
   programs.btop.enable = true;
+
+  programs.obs-studio.enable = true;
 }

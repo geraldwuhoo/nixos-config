@@ -5,7 +5,7 @@
   programs.vscode = {
     enable = true;
     # Use unstable Codium package + extensions for latest versions
-    package = pkgs.unstable.vscodium.fhsWithPackages (ps: with ps; [ nil ]);
+    package = pkgs.unstable.vscodium;
     extensions = with pkgs.unstable.vscode-extensions; [
       # Vim keybindings
       vscodevim.vim

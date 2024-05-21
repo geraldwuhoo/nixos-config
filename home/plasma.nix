@@ -26,7 +26,7 @@
 
     shortcuts = {
       "flameshot.desktop"."Capture" = "Meta+X";
-      "alacritty-4.desktop"."_launch" = "Meta+Return";
+      "Alacritty.desktop"."New" = "Meta+Return";
       "ksmserver"."Lock Session" = [ "Screensaver" "Meta+Shift+A" ];
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ ];
       bismuth = {
@@ -74,10 +74,6 @@
     };
 
     configFile = {
-      kglobalshortcutsrc = {
-        "alacritty-4.desktop"."_k_friendly_name".value =
-          "alacritty msg create-window || alacritty";
-      };
       kwinrc = {
         "Desktops"."Number".value = 4;
         "Desktops"."Rows".value = 1;

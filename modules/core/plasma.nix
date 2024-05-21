@@ -1,11 +1,24 @@
 { ... }: {
   imports = [ ./x11.nix ];
 
+  # display-manager
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.autoLogin = {
     enable = true;
     user = "jerry";
   };
+
+  # Enable Plasma 5 because Plasma 6 extension compatibility
   services.xserver.desktopManager.plasma5.enable = true;
+
+  # Enable kwallet related things
   security.pam.services.jerry.enableKwallet = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false;
+    settings = {
+      default-cache-ttl = 2592000;
+      max-cache-ttl = 2592000;
+    };
+  };
 }
