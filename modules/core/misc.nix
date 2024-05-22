@@ -7,6 +7,7 @@
     atool
     awscli2
     bat
+    bottles
     bottom
     brave
     chafa
