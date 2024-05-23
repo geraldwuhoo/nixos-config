@@ -104,7 +104,6 @@
     yj
     yq
     yt-dlp
-    zoxide
     zsh
   ];
 

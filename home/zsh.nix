@@ -1,6 +1,5 @@
 { config, ... }: {
   programs.fzf.enable = true;
-  programs.zoxide.enable = true;
 
   home.file.".zsh/bindkey.zsh".source = ./files/zsh/bindkey.zsh;
   home.file.".zsh/aliases.zsh".source = ./files/zsh/aliases.zsh;
@@ -113,6 +112,14 @@
       # minimal2
       zinit light subnixr/minimal
       MNML_OK_COLOR=6
+
+      # zoxide
+      zinit ice wait"0d" as"command" from"gh-r" lucid \
+        mv"zoxide -> zoxide" \
+        atclone"./zoxide init zsh > init.zsh" \
+        atpull"%atclone" src"init.zsh" nocompile'!' \
+        atload'unalias zi'
+      zinit light ajeetdsouza/zoxide
 
       # kube-ps1
       zinit light jonmosco/kube-ps1
