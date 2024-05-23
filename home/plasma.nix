@@ -56,6 +56,7 @@
         "Switch to Next Desktop" = "Meta+]";
         "Switch to Previous Desktop" = "Meta+[";
         "Window Close" = [ "Alt+F4" "Meta+W" ];
+        "Window Minimize" = [ "Meta+PgDown" "Meta+O" ];
         "Window One Screen Down" = "Meta+Alt+J";
         "Window One Screen Up" = "Meta+Alt+K";
         "Window One Screen to the Left" = "Meta+Alt+H";
@@ -84,8 +85,9 @@
           "WobblynessLevel".value = 1;
         };
         Plugins = {
-          "blurEnabled".value = true;
           "bismuthEnabled".value = true;
+          "blurEnabled".value = true;
+          "magiclampEnabled".value = true;
           "wobblywindowsEnabled".value = true;
         };
         Script-bismuth = {
