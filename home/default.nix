@@ -5,6 +5,7 @@
     ./eza.nix
     ./lf.nix
     ./plasma.nix
+    ./rofi.nix
     ./thunderbird.nix
     ./unclutter.nix
     ./vim.nix

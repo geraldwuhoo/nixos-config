@@ -29,6 +29,8 @@
       "Alacritty.desktop"."New" = "Meta+Return";
       "ksmserver"."Lock Session" = [ "Screensaver" "Meta+Shift+A" ];
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ ];
+      "rofi-2.desktop"."_launch" = "Meta+Space";
+      "rofi-rbw.desktop"."_launch" = "Alt+Space";
       bismuth = {
         "decrease_master_size" = "Meta+H";
         "decrease_master_win_count" = "Meta+D";
@@ -75,6 +77,9 @@
     };
 
     configFile = {
+      "kglobalshortcutsrc"."rofi-2.desktop"."_k_friendly_name" =
+        "rofi -show run";
+      "kglobalshortcutsrc"."rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
       kwinrc = {
         "Desktops"."Number".value = 4;
         "Desktops"."Rows".value = 1;
