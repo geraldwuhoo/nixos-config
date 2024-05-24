@@ -30,6 +30,7 @@
       "ksmserver"."Lock Session" = [ "Screensaver" "Meta+Shift+A" ];
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ ];
       "rofi-2.desktop"."_launch" = "Meta+Space";
+      "rofi-3.desktop"."_launch" = "Meta+C";
       "rofi-rbw.desktop"."_launch" = "Alt+Space";
       bismuth = {
         "decrease_master_size" = "Meta+H";
@@ -79,6 +80,8 @@
     configFile = {
       "kglobalshortcutsrc"."rofi-2.desktop"."_k_friendly_name" =
         "rofi -show run";
+      "kglobalshortcutsrc"."rofi-3.desktop"."_k_friendly_name" =
+        "rofi -show calc";
       "kglobalshortcutsrc"."rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
       kwinrc = {
         "Desktops"."Number".value = 4;
