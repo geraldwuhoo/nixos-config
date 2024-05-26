@@ -104,12 +104,16 @@
     yj
     yq
     yt-dlp
-    zsh
   ];
 
   # Programs
   programs.dconf.enable = true;
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false;
+    autosuggestions.enable = false;
+    syntaxHighlighting.enable = false;
+  };
   programs.java.enable = true;
   programs.steam = {
     enable = true;
