@@ -11,6 +11,7 @@
       nord
       prefix-highlight
       resurrect
+      tmux-fzf
       vim-tmux-navigator
     ];
 
