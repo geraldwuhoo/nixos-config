@@ -51,6 +51,7 @@
     kubectx
     kubernetes-helm
     lf
+    libnotify
     libreoffice
     libsForQt5.bismuth
     libwebp
