@@ -76,6 +76,9 @@
       "nix.serverPath" = "nil";
       "nix.formatterPath" = "/run/current-system/sw/bin/nixfmt";
 
+      # disable trash
+      "files.enableTrash" = false;
+
       # Begone telemetry
       "redhat.telemetry.enabled" = false;
     };
