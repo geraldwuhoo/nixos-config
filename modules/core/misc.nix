@@ -48,7 +48,6 @@
     kubectl-klock
     kubectl-neat
     kubectl-tree
-    kubectx
     kubernetes-helm
     lf
     libnotify
