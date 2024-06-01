@@ -10,14 +10,27 @@
   ];
 
   networking.hostName = "NixDesktop"; # Define your hostname.
-  networking.hostId = "a8c0b002";
+  networking.hostId = "86474ef9";
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
+  # Configure sops location
   sops.defaultSopsFile = ../../secrets/secrets.sops.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/var/lib/sops/age/keys.txt";
+
+  # Set up Clevis auto-unlock
+  # boot.initrd.kernelModules = [ "xhci_pci" "tpm_crb" "tpm_tis" "igb" "iwlwifi" ];
+  # boot.initrd.network = {
+  #   enable = true;
+  #   udhcpc.enable = true;
+  # };
+  # boot.initrd.clevis = {
+  #   enable = true;
+  #   useTang = true;
+  #   devices."zroot/ROOT/nix".secretFile = ./zroot.jwe;
+  # };
 
   stylix.image = ./wallpaper.jpg;
 
