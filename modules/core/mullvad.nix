@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Get Mullvad browser as well
   environment.systemPackages = with pkgs; [ mullvad-browser ];
 

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # GRUB config for ZFS
   boot.loader.timeout = 1;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -7,12 +8,16 @@
     zfsSupport = true;
     efiSupport = true;
     timeoutStyle = "countdown";
-    mirroredBoots = [{
-      devices = [ "nodev" ];
-      path = "/boot";
-    }];
+    mirroredBoots = [
+      {
+        devices = [ "nodev" ];
+        path = "/boot";
+      }
+    ];
   };
 
   # Clean /tmp on every boot
-  boot.tmp = { cleanOnBoot = true; };
+  boot.tmp = {
+    cleanOnBoot = true;
+  };
 }

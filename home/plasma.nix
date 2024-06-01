@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.kde.enable = false;
 
@@ -27,7 +28,10 @@
     shortcuts = {
       "flameshot.desktop"."Capture" = "Meta+X";
       "alacritty-2.desktop"."_launch" = "Meta+Return";
-      "ksmserver"."Lock Session" = [ "Screensaver" "Meta+Shift+A" ];
+      "ksmserver"."Lock Session" = [
+        "Screensaver"
+        "Meta+Shift+A"
+      ];
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = [ ];
       "rofi-2.desktop"."_launch" = "Meta+Space";
       "rofi-3.desktop"."_launch" = "Meta+C";
@@ -58,8 +62,14 @@
         "Switch to Desktop 4" = "Meta+4";
         "Switch to Next Desktop" = "Meta+]";
         "Switch to Previous Desktop" = "Meta+[";
-        "Window Close" = [ "Alt+F4" "Meta+W" ];
-        "Window Minimize" = [ "Meta+PgDown" "Meta+O" ];
+        "Window Close" = [
+          "Alt+F4"
+          "Meta+W"
+        ];
+        "Window Minimize" = [
+          "Meta+PgDown"
+          "Meta+O"
+        ];
         "Window One Screen Down" = "Meta+Alt+J";
         "Window One Screen Up" = "Meta+Alt+K";
         "Window One Screen to the Left" = "Meta+Alt+H";
@@ -78,12 +88,9 @@
     };
 
     configFile = {
-      "kglobalshortcutsrc"."alacritty-2.desktop"."_k_friendly_name" =
-        "smsg create-window || alacritty";
-      "kglobalshortcutsrc"."rofi-2.desktop"."_k_friendly_name" =
-        "rofi -show run";
-      "kglobalshortcutsrc"."rofi-3.desktop"."_k_friendly_name" =
-        "rofi -show calc";
+      "kglobalshortcutsrc"."alacritty-2.desktop"."_k_friendly_name" = "smsg create-window || alacritty";
+      "kglobalshortcutsrc"."rofi-2.desktop"."_k_friendly_name" = "rofi -show run";
+      "kglobalshortcutsrc"."rofi-3.desktop"."_k_friendly_name" = "rofi -show calc";
       "kglobalshortcutsrc"."rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
       kwinrc = {
         "Desktops"."Number".value = 4;

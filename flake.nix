@@ -29,14 +29,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, sops-nix, home-manager
-    , plasma-manager, stylix, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      sops-nix,
+      home-manager,
+      plasma-manager,
+      stylix,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
-          config.allowUnfreePredicate = pkg:
+          config.allowUnfreePredicate =
+            pkg:
             builtins.elem (nixpkgs.lib.getName pkg) [
               # VSCode extensions
               "vscode-extension-MS-python-vscode-pylance"
@@ -45,14 +55,20 @@
         };
       };
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       nixosConfigurations = {
         NixDesktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
-            ({ config, pkgs, ... }: {
-              nixpkgs.overlays = [ overlay-unstable ];
-            })
+            (
+              { config, pkgs, ... }:
+              {
+                nixpkgs.overlays = [ overlay-unstable ];
+              }
+            )
             ./hosts/NixDesktop
             stylix.nixosModules.stylix
 
@@ -62,8 +78,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
 
-                sharedModules =
-                  [ plasma-manager.homeManagerModules.plasma-manager ];
+                sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
                 users.jerry = import ./home;
               };
             }

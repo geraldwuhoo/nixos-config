@@ -1,7 +1,11 @@
-{ ... }: {
+{ ... }:
+{
   accounts.email.accounts.mailbox = {
     address = "gerald@geraldwu.com";
-    aliases = [ "gw@geraldwu.com" "c068fcb4@mailbox.org" ];
+    aliases = [
+      "gw@geraldwu.com"
+      "c068fcb4@mailbox.org"
+    ];
     realName = "Gerald Wu";
     primary = true;
     userName = "c068fcb4@mailbox.org";
@@ -12,12 +16,16 @@
     imap = {
       host = "imap.mailbox.org";
       port = 993;
-      tls = { enable = true; };
+      tls = {
+        enable = true;
+      };
     };
     smtp = {
       host = "smtp.mailbox.org";
       port = 465;
-      tls = { enable = true; };
+      tls = {
+        enable = true;
+      };
     };
     thunderbird = {
       enable = true;

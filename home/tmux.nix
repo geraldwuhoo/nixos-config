@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.fzf.tmux.enableShellIntegration = true;
 
   programs.tmux = {

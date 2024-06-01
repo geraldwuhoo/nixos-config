@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   # Hardware acceleration
   hardware.opengl = {
     enable = true;

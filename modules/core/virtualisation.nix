@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # KVM stuff
   virtualisation.libvirtd = {
     enable = true;
@@ -6,7 +7,9 @@
       package = pkgs.qemu_kvm;
       runAsRoot = true;
       swtpm.enable = true;
-      ovmf = { enable = true; };
+      ovmf = {
+        enable = true;
+      };
     };
   };
   programs.virt-manager.enable = true;

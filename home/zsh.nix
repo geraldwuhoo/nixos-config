@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   programs.fzf.enable = true;
 
   home.file.".zsh/bindkey.zsh".source = ./files/zsh/bindkey.zsh;
@@ -23,8 +24,7 @@
 
       # podman socket config
       DOCKER_SOCK = "/run/user/$UID/podman/podman.sock";
-      DOCKER_HOST =
-        "unix://${config.programs.zsh.sessionVariables.DOCKER_SOCK}";
+      DOCKER_HOST = "unix://${config.programs.zsh.sessionVariables.DOCKER_SOCK}";
 
       # ctrl+w stops at certain delimiters
       WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
@@ -39,8 +39,7 @@
       BAT_THEME = "Nord";
 
       # Source all k8s configs
-      KUBECONFIG = ''
-        $(\ls ~/.kube | awk -v d="$HOME/.kube/" '/conf/ { printf "%s%s:", d,$0}')'';
+      KUBECONFIG = ''$(\ls ~/.kube | awk -v d="$HOME/.kube/" '/conf/ { printf "%s%s:", d,$0}')'';
     };
 
     initExtra = ''

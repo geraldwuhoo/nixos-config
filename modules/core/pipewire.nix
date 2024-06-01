@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # Enable sound.
   sound.enable = false;
   hardware.pulseaudio.enable = false;

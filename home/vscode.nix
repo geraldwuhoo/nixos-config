@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.vscode.enable = false;
 

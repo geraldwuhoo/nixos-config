@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   xdg.configFile."lf/icons".source = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/gokcehan/lf/r32/etc/icons.example";
     sha256 = "0141nzyjr3mybkbn9p0wwv5l0d0scdc2r7pl8s1lgh11wi2l771x";
@@ -11,7 +12,11 @@
       source = "${pkgs.ctpv}/bin/ctpv";
     };
     settings = {
-      ratios = [ 1 2 3 ];
+      ratios = [
+        1
+        2
+        3
+      ];
       shell = "sh";
       shellopts = "-eu";
       ifs = "\\n";

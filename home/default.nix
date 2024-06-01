@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./alacritty.nix
     ./direnv.nix
@@ -30,7 +31,11 @@
     # release notes.
     stateVersion = "23.11"; # Please read the comment before changing.
 
-    packages = with pkgs; [ hyperfine jellyfin-mpv-shim ntfy-sh ];
+    packages = with pkgs; [
+      hyperfine
+      jellyfin-mpv-shim
+      ntfy-sh
+    ];
 
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -58,7 +63,9 @@
 
   services.syncthing = {
     enable = true;
-    tray = { enable = true; };
+    tray = {
+      enable = true;
+    };
   };
 
   services.easyeffects = {

@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   # Explicitly get ceph-client package
   environment.systemPackages = with pkgs; [ ceph-client ];
 

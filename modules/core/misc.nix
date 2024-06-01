@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -131,6 +132,5 @@
     client.enable = true;
   };
 
-  fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 }
