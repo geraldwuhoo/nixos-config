@@ -1,5 +1,3 @@
-alias ls="eza --color=auto --group-directories-first"
-
 flashortho() {
 	echo -e "\nPUT KEYBOARD INTO BOOTLOADER MODE NOW!\n"
 	if [ -z $1 ];

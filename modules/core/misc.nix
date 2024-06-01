@@ -41,7 +41,6 @@
     home-manager
     htop-vim
     httpie
-    hydrus
     imagemagick
     jpegoptim
     jq

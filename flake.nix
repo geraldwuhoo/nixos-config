@@ -77,6 +77,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "bak";
 
                 sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
                 users.jerry = import ./home;
