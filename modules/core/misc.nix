@@ -60,8 +60,7 @@
     ncdu
     neofetch
     nil
-    nixfmt
-    nixpkgs-fmt
+    nixfmt-rfc-style
     openssl
     opentofu
     ouch

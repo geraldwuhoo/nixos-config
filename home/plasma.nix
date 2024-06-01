@@ -13,16 +13,16 @@
       iconTheme = "Zafiro-Icons-Blue";
     };
 
-    # fonts = {
-    #   general = {
-    #     family = "DejaVu Sans";
-    #     pointSize = 9;
-    #   };
-    #   fixedWidth = {
-    #     family = "DejaVu Sans Mono for Powerline";
-    #     pointSize = 9;
-    #   };
-    # };
+    fonts = {
+      general = {
+        family = "DejaVu Sans";
+        pointSize = 9;
+      };
+      fixedWidth = {
+        family = "DejaVu Sans Mono for Powerline";
+        pointSize = 9;
+      };
+    };
 
     shortcuts = {
       "flameshot.desktop"."Capture" = "Meta+X";

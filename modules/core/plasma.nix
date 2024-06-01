@@ -2,8 +2,8 @@
   imports = [ ./x11.nix ];
 
   # display-manager
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.autoLogin = {
+  services.displayManager.sddm.enable = true;
+  services.displayManager.autoLogin = {
     enable = true;
     user = "jerry";
   };
@@ -21,7 +21,6 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = false;
-    pinentryFlavor = "curses";
     settings = {
       default-cache-ttl = 2592000;
       max-cache-ttl = 2592000;
