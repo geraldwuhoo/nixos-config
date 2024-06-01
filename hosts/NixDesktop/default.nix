@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ../../modules/core
@@ -20,17 +20,30 @@
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/var/lib/sops/age/keys.txt";
 
-  # Set up Clevis auto-unlock
-  # boot.initrd.kernelModules = [ "xhci_pci" "tpm_crb" "tpm_tis" "igb" "iwlwifi" ];
-  # boot.initrd.network = {
-  #   enable = true;
-  #   udhcpc.enable = true;
-  # };
-  # boot.initrd.clevis = {
-  #   enable = true;
-  #   useTang = true;
-  #   devices."zroot/ROOT/nix".secretFile = ./zroot.jwe;
-  # };
+  boot.loader.grub.configurationLimit = 5;
+
+  # TPM2 and Network modules for TPM+Tang
+  boot.initrd.kernelModules = [
+    "xhci_pci"
+    "tpm_crb"
+    "tpm_tis"
+    "igb"
+    "iwlwifi"
+  ];
+  # Manually set up Clevis auto-unlock with TPM+Tang because the clevis module broke
+  boot.initrd.network = {
+    enable = true;
+    udhcpc.enable = true;
+    postCommands = ''
+      export PATH="${pkgs.curl}/bin:${pkgs.clevis}/bin:$PATH"
+      zpool import zroot
+      echo "running clevis to unlock zroot"
+      clevis decrypt < /etc/clevis/zroot.jwe | zfs load-key zroot
+    '';
+  };
+  boot.initrd.secrets = {
+    "/etc/clevis/zroot.jwe" = /boot/zroot.jwe;
+  };
 
   stylix.image = ./wallpaper.jpg;
 

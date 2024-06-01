@@ -21,7 +21,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
 
   boot.kernelParams = [
     "zfs.zfs_arc_min=268435456"
