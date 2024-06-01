@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ../../modules/core
@@ -23,6 +28,7 @@
   boot.loader.grub.configurationLimit = 5;
 
   # TPM2 and Network modules for TPM+Tang
+  boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
   boot.initrd.kernelModules = [
     "xhci_pci"
     "tpm_crb"
