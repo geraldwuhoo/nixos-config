@@ -40,6 +40,17 @@ abbrevs+=(
   "tgt"   "topgrade --tmux"
 )
 
+# nix
+abbrevs+=(
+  "ngc"   "sudo nix-collect-garbage -d --verbose && nix-collect-garbage -d --verbose"
+  "nsd"   "sudo nixos-rebuild switch --flake \"\${HOME}/nixos#NixDesktop\""
+  "ntd"   "sudo nixos-rebuild test --flake \"\${HOME}/nixos#NixDesktop\""
+  "nbd"   "sudo nixos-rebuild boot --flake \"\${HOME}/nixos#NixDesktop\""
+  "nsx"   "sudo nixos-rebuild switch --flake \"\${HOME}/nixos#NixX230\""
+  "ntx"   "sudo nixos-rebuild test --flake \"\${HOME}/nixos#NixX230\""
+  "nbx"   "sudo nixos-rebuild boot --flake \"\${HOME}/nixos#NixX230\""
+)
+
 # apt
 abbrevs+=(
   "aptu"  "sudo apt update"
