@@ -21,7 +21,10 @@
   openssh.enable = true;
   tor.enable = true;
   virtual.enable = true;
-  clevis.jweFile = /boot/zroot.jwe;
+  clevis = {
+    jweFile = /boot/zroot.jwe;
+    useTpm = true;
+  };
 
   networking.hostName = "NixDesktop"; # Define your hostname.
   networking.hostId = "86474ef9";
