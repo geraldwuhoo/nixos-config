@@ -34,7 +34,7 @@
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/var/lib/sops/age/keys.txt";
 
-  boot.loader.grub.configurationLimit = 5;
+  boot.loader.grub.configurationLimit = 20;
   boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
 
   stylix.image = ./wallpaper.jpg;
