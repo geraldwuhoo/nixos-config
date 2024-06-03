@@ -1,13 +1,19 @@
-{ ... }:
+{ lib, config, ... }:
 {
   imports = [ ./email.nix ];
 
-  # thunderbird
-  programs.thunderbird = {
-    enable = true;
-    profiles.jerry = {
-      isDefault = true;
-      withExternalGnupg = true;
+  options = {
+    thunderbird.enable = lib.mkEnableOption "enables thunderbird";
+  };
+
+  config = lib.mkIf config.thunderbird.enable {
+    # thunderbird
+    programs.thunderbird = {
+      enable = true;
+      profiles.jerry = {
+        isDefault = true;
+        withExternalGnupg = true;
+      };
     };
   };
 }

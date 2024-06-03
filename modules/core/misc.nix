@@ -107,29 +107,22 @@
 
   # Programs
   programs.dconf.enable = true;
+
+  # Disable system zsh stuff to avoid cache invalidation with zinit in home-manager
   programs.zsh = {
     enable = true;
     enableCompletion = false;
     autosuggestions.enable = false;
     syntaxHighlighting.enable = false;
   };
+
   programs.java.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
-  programs.kdeconnect.enable = true;
   programs.gnupg.agent.enable = true;
   programs.git = {
     enable = true;
     lfs.enable = true;
   };
 
-  services.tor = {
-    enable = true;
-    relay.enable = false;
-    client.enable = true;
-  };
-
+  # Get nerdfonts patched DejaVuSans package
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 }

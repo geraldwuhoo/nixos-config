@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./alacritty.nix
@@ -15,6 +15,9 @@
     ./zathura.nix
     ./zsh.nix
   ];
+
+  eza.enable = lib.mkDefault true;
+  thunderbird.enable = lib.mkDefault true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

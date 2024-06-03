@@ -1,21 +1,34 @@
 { lib, ... }:
 {
   imports = [
+    # Core
     ./boot.nix
     ./user.nix
-    ./openssh.nix
-    ./nvidia.nix
-    ./ceph-client.nix
-    ./pipewire.nix
+
+    # System
     ./bluetooth.nix
-    ./stylix.nix
+    ./ceph-client.nix
+    ./clevis.nix
+    ./nvidia.nix
+    ./oci.nix
+    ./openssh.nix
+    ./pipewire.nix
     ./plasma.nix
-    ./mullvad.nix
-    ./barrier.nix
+    ./tor.nix
     ./virtualisation.nix
+
+    # Niceties
+    ./barrier.nix
+    ./mullvad.nix
     ./steam.nix
+    ./stylix.nix
+
+    # Misc
     ./misc.nix
   ];
+
+  clevis.enable = lib.mkDefault true;
+  oci.enable = lib.mkDefault true;
 
   nix.settings.experimental-features = [
     "nix-command"

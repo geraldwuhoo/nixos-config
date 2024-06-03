@@ -14,6 +14,15 @@
     ./hardware-configuration.nix
   ];
 
+  # Enable desired custom modules
+  bluetooth.enable = true;
+  ceph-client.enable = true;
+  nvidia.enable = true;
+  openssh.enable = true;
+  tor.enable = true;
+  virtual.enable = true;
+  clevis.jweFile = /boot/zroot.jwe;
+
   networking.hostName = "NixDesktop"; # Define your hostname.
   networking.hostId = "86474ef9";
 
@@ -26,30 +35,7 @@
   sops.age.keyFile = "/var/lib/sops/age/keys.txt";
 
   boot.loader.grub.configurationLimit = 5;
-
-  # TPM2 and Network modules for TPM+Tang
   boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
-  boot.initrd.kernelModules = [
-    "xhci_pci"
-    "tpm_crb"
-    "tpm_tis"
-    "igb"
-    "iwlwifi"
-  ];
-  # Manually set up Clevis auto-unlock with TPM+Tang because the clevis module broke
-  boot.initrd.network = {
-    enable = true;
-    udhcpc.enable = true;
-    postCommands = ''
-      export PATH="${pkgs.curl}/bin:${pkgs.clevis}/bin:$PATH"
-      zpool import zroot
-      echo "running clevis to unlock zroot"
-      clevis decrypt < /etc/clevis/zroot.jwe | zfs load-key zroot
-    '';
-  };
-  boot.initrd.secrets = {
-    "/etc/clevis/zroot.jwe" = /boot/zroot.jwe;
-  };
 
   stylix.image = ./wallpaper.jpg;
 
