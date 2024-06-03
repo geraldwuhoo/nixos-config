@@ -44,6 +44,7 @@
     imagemagick
     jpegoptim
     jq
+    kdePackages.kolf # very important
     kubectl
     kubectl-klock
     kubectl-neat
@@ -66,7 +67,9 @@
     ouch
     oxipng
     p7zip
+    pbzip2
     perl536Packages.FileMimeInfo
+    pigz
     pngquant
     powerline
     powerline-fonts
