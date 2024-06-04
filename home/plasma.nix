@@ -25,6 +25,7 @@
       "rofi-2.desktop"."_launch" = "Meta+Space";
       "rofi-3.desktop"."_launch" = "Meta+C";
       "rofi-rbw.desktop"."_launch" = "Alt+Space";
+      "io.github.alainm23.planify.quick-add.desktop"."_launch" = "Meta+Shift+P";
       bismuth = {
         "decrease_master_size" = "Meta+H";
         "decrease_master_win_count" = "Meta+D";
@@ -77,10 +78,13 @@
     };
 
     configFile = {
-      "kglobalshortcutsrc"."alacritty-2.desktop"."_k_friendly_name" = "smsg create-window || alacritty";
-      "kglobalshortcutsrc"."rofi-2.desktop"."_k_friendly_name" = "rofi -show run";
-      "kglobalshortcutsrc"."rofi-3.desktop"."_k_friendly_name" = "rofi -show calc";
-      "kglobalshortcutsrc"."rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
+      "kglobalshortcutsrc" = {
+        "alacritty-2.desktop"."_k_friendly_name" = "alacritty msg create-window || alacritty";
+        "rofi-2.desktop"."_k_friendly_name" = "rofi -show run";
+        "rofi-3.desktop"."_k_friendly_name" = "rofi -show calc";
+        "rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
+        "io.github.alainm23.planify.quick-add.desktop"."_k_friendly_name" = "io.github.alainm23.planify.quick-add";
+      };
       kwinrc = {
         "Desktops"."Number".value = 4;
         "Desktops"."Rows".value = 1;
