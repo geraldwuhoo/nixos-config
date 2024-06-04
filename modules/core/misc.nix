@@ -90,6 +90,7 @@
     tmuxinator
     tor-browser
     tree
+    udiskie
     ueberzug
     ungoogled-chromium
     unstable.feishin
