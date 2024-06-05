@@ -21,6 +21,8 @@
   openssh.enable = true;
   tor.enable = true;
   virtual.enable = true;
+
+  # Configure Clevis
   clevis = {
     jweFile = /boot/zroot.jwe;
     useTpm = true;
