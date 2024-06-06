@@ -61,6 +61,7 @@
 
       # D E N S I T Y
       "editor.fontSize" = 14;
+      "editor.inlayHints.fontSize" = 10;
       "editor.minimap.enabled" = false;
       "editor.wordWrap" = "on";
       "window.menuBarVisibility" = "toggle";
