@@ -15,6 +15,9 @@
     konsole # I don't need it since I have other terminal emulators
   ];
 
+  # Open KDE connect ports
+  programs.kdeconnect.enable = true;
+
   # Enable kwallet related things
   security.pam.services.jerry.enableKwallet = true;
   services.pcscd.enable = true;
