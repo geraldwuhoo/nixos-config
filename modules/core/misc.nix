@@ -50,6 +50,7 @@
     kubectl-neat
     kubectl-tree
     kubernetes-helm
+    kustomize
     lf
     libnotify
     libreoffice
