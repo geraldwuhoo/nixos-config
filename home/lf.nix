@@ -5,6 +5,12 @@
     sha256 = "0141nzyjr3mybkbn9p0wwv5l0d0scdc2r7pl8s1lgh11wi2l771x";
   };
 
+  home.packages = with pkgs; [
+    chafa
+    ctpv
+    ueberzugpp
+  ];
+
   programs.lf = {
     enable = true;
     previewer = {

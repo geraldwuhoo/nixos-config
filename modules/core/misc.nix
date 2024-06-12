@@ -11,11 +11,9 @@
     bottles
     bottom
     brave
-    chafa
     cht-sh
     cinny-desktop
     clevis
-    ctpv
     curlie
     dig
     docker-compose
@@ -92,7 +90,6 @@
     tor-browser
     tree
     udiskie
-    ueberzug
     ungoogled-chromium
     unstable.feishin
     unstable.gitlab-ci-local
