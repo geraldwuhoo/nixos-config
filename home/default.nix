@@ -4,6 +4,7 @@
     ./alacritty.nix
     ./direnv.nix
     ./eza.nix
+    ./joplin.nix
     ./lf.nix
     ./plasma.nix
     ./rofi.nix
