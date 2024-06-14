@@ -22,6 +22,7 @@
     ./mullvad.nix
     ./steam.nix
     ./stylix.nix
+    ./piper.nix
 
     # Misc
     ./misc.nix

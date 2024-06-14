@@ -19,6 +19,7 @@
   ceph-client.enable = true;
   nvidia.enable = true;
   openssh.enable = true;
+  piper.enable = true;
   tor.enable = true;
   virtual.enable = true;
 
