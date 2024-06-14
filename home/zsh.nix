@@ -111,6 +111,11 @@
       # minimal2
       zinit light subnixr/minimal
       MNML_OK_COLOR=6
+      # change prompt char if in nix-shell
+      _nix_shell_char () {
+        [[ -n "''${IN_NIX_SHELL}" ]] && MNML_USER_CHAR="❄" || MNML_USER_CHAR="λ"
+      }
+      precmd_functions+=_nix_shell_char
 
       # zoxide
       zinit ice wait"0d" as"command" from"gh-r" lucid \
