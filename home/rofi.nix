@@ -8,6 +8,7 @@
       email = "gerald@geraldwu.com";
       base_url = "https://vaultwarden.wuhoo.xyz";
       lock_timeout = 86400;
+      pinentry = pkgs.pinentry-qt;
     };
   };
 
