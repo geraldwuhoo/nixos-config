@@ -49,6 +49,8 @@ abbrevs+=(
   "nsx"   "sudo nixos-rebuild switch --flake \"\${HOME}/nixos#NixX230\""
   "ntx"   "sudo nixos-rebuild test --flake \"\${HOME}/nixos#NixX230\""
   "nbx"   "sudo nixos-rebuild boot --flake \"\${HOME}/nixos#NixX230\""
+  "nxs"   "nix-shell --command zsh -p"
+  "nrp"   "nix run github:pjones/plasma-manager/plasma-5"
 )
 
 # apt
@@ -78,24 +80,6 @@ abbrevs+=(
 abbrevs+=(
   "ac"	"aur sync --pacman-conf /etc/pacman_chroot.conf --makepkg-conf /etc/makepkg_chroot.conf -c"
   "avd"	"aur vercmp-devel"
-)
-
-# flatpak
-abbrevs+=(
-  "flatl"	"flatpak list"
-  "flatr"	"flatpak run"
-  "flati"	"flatpak install flathub"
-)
-
-# snap
-abbrevs+=(
-  "snapf"  "sudo snap find"
-  "snapl"  "sudo snap list"
-  "snapr"  "sudo snap remove"
-  "snapu"  "sudo snap refresh"
-  "snape"  "sudo snap enable"
-  "snapd"  "sudo snap disable"
-  "snapi"  "sudo snap install"
 )
 
 # rsync
@@ -132,26 +116,6 @@ abbrevs+=(
 # Ansible
 abbrevs+=(
   "ap"    "ansible-playbook"
-)
-
-# Tmux
-abbrevs+=(
-  "ta"    "tmux attach"
-  "tan"   "tmux attach || tmux new -n editor"
-  "tsw"   "tmux split-window"
-  "tswrc" "tmux split-window rails c"
-  "tswrs" "tmux split-window rails s"
-  "tswv"  "tmux split-window vim"
-  "tnw"   "tmux new-window"
-  "tnwa"  "tnw; tnws; tnwb; tmux select-window -t 1"
-  "tnws"  "tmux new-window -n server bin/webpack-dev-server \; split-window -v rails s"
-  "tnwb"  "tmux new-window -n boards vim -p board-now.md board-later.md board-scratch-pad.md"
-  "tnwl"  "tmux new-window -n logs \"while ((1)) { heroku logs -t -r production }\""
-  "tnwp"  "tmux new-window -n ping ping 1.1.1.1"
-
-  "tks"   "tmux kill-session"
-
-  "cr7t"  "chmod -R 777 /tmp/tmux-501"
 )
 
 # Docker
