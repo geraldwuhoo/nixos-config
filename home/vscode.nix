@@ -39,8 +39,9 @@
       redhat.ansible
       signageos.signageos-vscode-sops # unfree (no LICENSE in upstream)
 
-      # CSV
+      # Enhanced text
       mechatroner.rainbow-csv
+      yzhang.markdown-all-in-one
 
       # Theming
       arcticicestudio.nord-visual-studio-code
