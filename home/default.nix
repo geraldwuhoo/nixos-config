@@ -6,6 +6,7 @@
     ./eza.nix
     ./joplin.nix
     ./lf.nix
+    ./mpv.nix
     ./plasma.nix
     ./rofi.nix
     ./thunderbird.nix

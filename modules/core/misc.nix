@@ -15,6 +15,7 @@
     cinny-desktop
     clevis
     curlie
+    devour
     dig
     docker-compose
     du-dust
