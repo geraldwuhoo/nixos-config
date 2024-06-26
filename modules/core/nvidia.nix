@@ -34,5 +34,7 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     boot.kernelModules = [ "nvidia_uvm" ];
+
+    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
   };
 }

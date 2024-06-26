@@ -81,7 +81,6 @@
     signal-desktop
     sonixd
     sops
-    sunshine
     sxhkd
     sxiv
     tealdeer

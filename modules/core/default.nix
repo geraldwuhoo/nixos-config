@@ -23,6 +23,7 @@
     ./steam.nix
     ./stylix.nix
     ./piper.nix
+    ./sunshine.nix
 
     # Misc
     ./misc.nix
@@ -44,13 +45,17 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
-      "cudatoolkit"
+      "libnpp"
 
       # Steam
       "steam"
       "steam-original"
       "steam-run"
-    ];
+    ]
+    # CUDA packages
+    || lib.hasPrefix "cuda" (lib.getName pkg)
+    || lib.hasPrefix "libcu" (lib.getName pkg)
+    || lib.hasPrefix "libnv" (lib.getName pkg);
 
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
