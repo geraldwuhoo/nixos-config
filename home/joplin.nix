@@ -12,6 +12,8 @@
       "locale" = "en_US";
       "theme" = 6; # Nord theme
       "themeAutoDetect" = false;
+      "editor.codeView" = true;
+      "editor.keyboardMode" = "vim";
     };
   };
 }
