@@ -4,10 +4,6 @@
 
   # display-manager
   services.displayManager.sddm.enable = true;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "jerry";
-  };
 
   # Enable Plasma 5 because Plasma 6 extension compatibility
   services.xserver.desktopManager.plasma5.enable = true;
