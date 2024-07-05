@@ -1,7 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.mpv = {
     enable = true;
+    scripts = with pkgs.mpvScripts; [
+      sponsorblock
+    ];
     config = {
       input-ipc-server = "/tmp/mpvsocket";
       hwdec = "auto-copy";

@@ -71,8 +71,6 @@
     perl536Packages.FileMimeInfo
     pigz
     pngquant
-    powerline
-    powerline-fonts
     pre-commit
     pwgen
     redshift
