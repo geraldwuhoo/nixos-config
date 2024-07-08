@@ -79,6 +79,8 @@
             ./hosts/NixDesktop
             stylix.nixosModules.stylix
 
+            { nix.settings.trusted-users = [ "jerry" ]; }
+
             home-manager.nixosModules.home-manager
             {
               home-manager = {
