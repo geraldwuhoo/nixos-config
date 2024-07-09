@@ -89,7 +89,7 @@
       ungoogled-chromium
       unzip
       vim
-      webcord-vencord
+      webcord
       wget
       xclip
       xdo

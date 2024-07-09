@@ -90,7 +90,10 @@
     settings.k9s.ui.skin = "nord";
   };
 
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop.override { cudaSupport = true; };
+  };
 
   programs.obs-studio.enable = true;
 }

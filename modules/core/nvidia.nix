@@ -35,6 +35,9 @@
     };
     boot.kernelModules = [ "nvidia_uvm" ];
 
-    environment.systemPackages = with pkgs; [ nvtopPackages.nvidia ];
+    environment.systemPackages = with pkgs; [
+      gwe
+      nvtopPackages.nvidia
+    ];
   };
 }
