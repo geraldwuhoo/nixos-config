@@ -33,7 +33,6 @@
       file
       firefox
       flameshot
-      fluxcd
       fzf
       gallery-dl
       gimp
@@ -49,11 +48,6 @@
       jpegoptim
       jq
       kdePackages.kolf # very important
-      kubectl
-      kubectl-klock
-      kubectl-neat
-      kubectl-tree
-      kubernetes-helm
       kustomize
       lf
       libnotify
@@ -94,7 +88,6 @@
       udiskie
       ungoogled-chromium
       unzip
-      velero
       vim
       webcord-vencord
       wget
@@ -108,6 +101,16 @@
     ++ (with unstable; [
       finamp
       planify
+
+      # Kubernetes tooling
+      fluxcd
+      kubectl
+      kubectl-klock
+      kubectl-ktop
+      kubectl-neat
+      kubectl-tree
+      kubernetes-helm
+      velero
     ]);
 
   # Programs

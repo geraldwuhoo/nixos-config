@@ -79,7 +79,17 @@
     preset = "HD800S (Oratory1990)";
   };
 
-  programs.k9s.enable = true;
+  xdg.configFile."k9s/skins/nord.yaml".source = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/derailed/k9s/master/skins/nord.yaml";
+    sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
+  };
+  stylix.targets.k9s.enable = false;
+  programs.k9s = {
+    enable = true;
+    package = pkgs.unstable.k9s;
+    settings.k9s.ui.skin = "nord";
+  };
+
   programs.btop.enable = true;
 
   programs.obs-studio.enable = true;
