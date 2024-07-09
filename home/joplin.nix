@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.joplin-desktop = {
     enable = true;
+    package = pkgs.unstable.joplin-desktop;
     sync = {
       interval = "5m";
       target = "nextcloud";
