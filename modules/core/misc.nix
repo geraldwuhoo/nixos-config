@@ -19,6 +19,8 @@
       clevis
       curlie
       devour
+      qmk
+      qmk-udev-rules
       dig
       docker-compose
       du-dust
@@ -130,6 +132,8 @@
     enable = true;
     lfs.enable = true;
   };
+
+  hardware.keyboard.qmk.enable = true;
 
   # Get nerdfonts patched DejaVuSans package
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];

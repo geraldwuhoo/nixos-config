@@ -183,8 +183,8 @@ abbrevs+=(
   "kdc"   "kubectl delete pvc"
   "kpv"   "kubectl get pv | awk '/Released/ {print \$1;}' | xargs -I{} kubectl delete pv {}"
   "kcdbg" "kubectl run --stdin --tty --rm debug --image=alpine --restart=Never -- sh"
-  "kb"    "kustomize build"
-  "kbka"  "kustomize build __CURSOR__ | kubectl apply -f -"
+  "kzb"   "kustomize build"
+  "kzbka" "kustomize build __CURSOR__ | kubectl apply -f -"
   "k3dc"  "k3d cluster create --config ~/.kube/k3d.yaml && k3d kubeconfig get k3s-default > ~/.kube/k3d.config"
   "k3dd"  "k3d cluster delete && rm ~/.kube/k3d.config"
 )
