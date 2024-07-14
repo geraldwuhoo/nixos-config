@@ -37,9 +37,13 @@
   time.timeZone = "America/Los_Angeles";
 
   # Configure sops location
-  sops.defaultSopsFile = ../../secrets/secrets.sops.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/var/lib/sops/age/keys.txt";
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.sops.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/var/lib/sops/age/keys.txt";
+    age.sshKeyPaths = [ ];
+    gnupg.sshKeyPaths = [ ];
+  };
 
   boot.loader.grub.configurationLimit = 20;
   boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
