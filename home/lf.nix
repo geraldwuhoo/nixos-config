@@ -73,7 +73,7 @@
       opti2 = ''
         ''${{
           set -f
-          echo "$fx" | grep -i -e "\\.jpe\?g" | xargs -I{} sh -c 'jpegoptim --strip-all "{}"; convert "{}" -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace sRGB "{}"'
+          echo "$fx" | grep -i -e "\\.jpe\?g" | xargs -I{} sh -c 'jpegoptim --strip-all "{}"; magick "{}" -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace sRGB "{}"'
           echo "$fx" | grep -i -e "\\.png" | xargs -I{} pngquant --quality 40-80 '{}'
           echo "$fx" | grep -i -e "\\.webp" | xargs -I{} cwebp '{}' -q 75 -alpha_q 80 -m 6 -mt -o '{}'
         }}
@@ -81,7 +81,7 @@
       tojpg = ''
         ''${{
           set -f
-          echo "$fx" | xargs -I{} sh -c 'f="{}"; convert "$f" "''${f%.*}.jpg"'
+          echo "$fx" | xargs -I{} sh -c 'f="{}"; magick "$f" "''${f%.*}.jpg"'
         }}
       '';
       towebp = ''
@@ -99,7 +99,7 @@
       resize = ''
         ''${{
           set -f
-          echo "$fx" | xargs -I{} convert '{}' -resize ''${1}% '{}'
+          echo "$fx" | xargs -I{} magick '{}' -resize ''${1}% '{}'
         }}
       '';
       touch = ''
