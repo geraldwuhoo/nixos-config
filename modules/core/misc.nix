@@ -15,7 +15,6 @@
       bottom
       brave
       cht-sh
-      cinny-desktop
       clevis
       curlie
       devour
