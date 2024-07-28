@@ -20,9 +20,10 @@
     # Niceties
     ./barrier.nix
     ./mullvad.nix
+    ./piper.nix
+    ./psd.nix
     ./steam.nix
     ./stylix.nix
-    ./piper.nix
     ./sunshine.nix
 
     # Misc
