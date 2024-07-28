@@ -2,7 +2,7 @@
 {
   programs.joplin-desktop = {
     enable = true;
-    package = pkgs.unstable.joplin-desktop;
+    package = pkgs.unstable.joplin-desktop; # should track close to upstream due to server-side dependencies
     sync = {
       interval = "5m";
       target = "nextcloud";

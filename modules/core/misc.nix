@@ -5,103 +5,127 @@
   environment.systemPackages =
     with pkgs;
     [
-      age
-      ansible
-      appimage-run
-      atool
-      awscli2
-      bat
-      bottles
-      bottom
-      brave
-      cht-sh
-      clevis
-      curlie
-      devour
-      qmk
-      qmk-udev-rules
-      dig
-      docker-compose
-      du-dust
-      efibootmgr
-      element-desktop
-      exiftool
-      eza
-      fd
-      feishin
-      ffmpeg-full
-      ffsend
-      file
-      firefox
-      flameshot
-      fzf
-      gallery-dl
-      gimp
-      gitlab-ci-local
-      glow
-      gnupg
-      gocryptfs
-      gron
+      # Nix
       home-manager
-      htop-vim
-      httpie
-      imagemagick
-      jpegoptim
-      jq
-      kdePackages.kolf # very important
-      kustomize
-      lf
-      libnotify
-      libreoffice
-      libsForQt5.bismuth
-      libwebp
-      lsof
-      mediainfo
-      mpv
-      ncdu
-      neofetch
       nil
       nixfmt-rfc-style
+
+      # Standard utils but better
+      bat
+      bottom
+      du-dust
+      eza
+      fd
+      file
+      htop-vim
+      lsof
+      ncdu
       openssl
-      opentofu
-      ouch
-      oxipng
-      p7zip
-      pbzip2
-      perl536Packages.FileMimeInfo
-      pigz
-      pngquant
-      pre-commit
-      pwgen
-      redshift
-      rhash
       ripgrep
-      s3cmd
-      signal-desktop
-      sops
-      sxhkd
-      sxiv
-      tealdeer
-      tmux
-      tmuxinator
-      tor-browser
       tree
-      udiskie
-      ungoogled-chromium
-      unzip
-      vim
-      webcord
+
+      # Networking tools
+      awscli2
+      curlie
+      dig
+      httpie
+      inetutils
+      s3cmd
       wget
+
+      # Development tools
+      docker-compose
+      gitlab-ci-local
+      pre-commit
+      qmk
+      qmk-udev-rules
+
+      # IaC tools
+      ansible
+      gron
+      jq
+      opentofu
+      yj
+      yq
+
+      # X11 utilities
       xclip
       xdo
       xdotool
-      yj
-      yq
-      yt-dlp
+
+      # Browsers
+      brave
+      firefox
+      tor-browser
+      ungoogled-chromium
+
+      # GUI applications
+      bottles
+      element-desktop
+      gimp
+      libreoffice
+      libsForQt5.bismuth
+      redshift
+      signal-desktop
+      sxhkd
+      webcord
+
+      # Media tools
+      exiftool
+      ffmpeg-full
+      flameshot
+      imagemagick
+      jpegoptim
+      libwebp
+      mediainfo
+      mpv
+      oxipng
+      perl536Packages.FileMimeInfo
+      pngquant
+      sxiv
+
+      # Archive/compression/encryption tools
+      age
+      atool
+      gnupg
+      gocryptfs
+      ouch
+      p7zip
+      pbzip2
+      pigz
+      sops
+      unzip
+
+      # CLI tools
+      appimage-run
+      cht-sh
+      clevis
+      devour
+      efibootmgr
+      ffsend
+      fzf
+      gallery-dl
+      glow
+      lf
+      libnotify
+      neofetch
+      pwgen
+      rhash
+      tealdeer
+      tmux
+      tmuxinator
+      udiskie
+      vim
+
+      # Very important
+      kdePackages.kolf
     ]
     ++ (with unstable; [
+      # Apps that should track close to upstream due to server-side dependencies
+      feishin
       finamp
       planify
+      yt-dlp
 
       # Kubernetes tooling
       fluxcd
@@ -111,6 +135,7 @@
       kubectl-neat
       kubectl-tree
       kubernetes-helm
+      kustomize
       velero
     ]);
 
@@ -118,6 +143,7 @@
   programs.dconf.enable = true;
 
   # Disable system zsh stuff to avoid cache invalidation with zinit in home-manager
+  # Fixes slow zsh interactive shell start up time
   programs.zsh = {
     enable = true;
     enableCompletion = false;
