@@ -95,6 +95,7 @@
       pigz
       sops
       unzip
+      unrar-wrapper
 
       # CLI tools
       appimage-run
