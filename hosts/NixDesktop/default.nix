@@ -20,7 +20,7 @@
   nvidia.enable = true;
   openssh.enable = true;
   piper.enable = true;
-  psd.enable = true;
+  psd.enable = false;
   sunshine.enable = true;
   tor.enable = true;
   virtual.enable = true;
