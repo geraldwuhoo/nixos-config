@@ -136,6 +136,7 @@
       kubectl-neat
       kubectl-tree
       kubernetes-helm
+      kubie
       kustomize
       velero
     ]);
