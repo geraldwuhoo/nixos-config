@@ -8,7 +8,14 @@
     services.tor = {
       enable = true;
       relay.enable = false;
-      client.enable = true;
+      client = {
+        enable = true;
+        socksListenAddress = {
+          addr = "127.0.0.1";
+          port = 9050;
+          IsolateDestAddr = true;
+        };
+      };
     };
   };
 }
