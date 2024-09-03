@@ -124,8 +124,8 @@
       Plugin 'junegunn/fzf'
 
       " Buffer explorer
-      Plugin 'jlanzarotta/bufexplorer'
-      noremap <Leader>b :BufExplorer<CR>
+      Plugin 'yegappan/bufpicker'
+      noremap <Leader>b :BufPicker<CR>
 
       " Window swap plugin
       Plugin 'wesQ3/vim-windowswap'
