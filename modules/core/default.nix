@@ -9,6 +9,7 @@
     ./bluetooth.nix
     ./ceph-client.nix
     ./clevis.nix
+    ./ipfs.nix
     ./nvidia.nix
     ./oci.nix
     ./openssh.nix

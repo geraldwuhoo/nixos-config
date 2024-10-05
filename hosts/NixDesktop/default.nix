@@ -17,6 +17,7 @@
   # Enable desired custom modules
   bluetooth.enable = true;
   ceph-client.enable = true;
+  ipfs.enable = true;
   nvidia.enable = true;
   openssh.enable = true;
   piper.enable = true;
