@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -12,7 +12,7 @@
 
       # Standard utils but better
       bat
-      bottom
+      (btop.override { cudaSupport = config.nvidia.enable; })
       du-dust
       eza
       fd
