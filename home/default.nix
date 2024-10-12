@@ -3,6 +3,7 @@
   imports = [
     ./alacritty.nix
     ./direnv.nix
+    ./easyeffects.nix
     ./eza.nix
     ./joplin.nix
     ./lf.nix
@@ -18,6 +19,7 @@
     ./zsh.nix
   ];
 
+  easyeffects.enable = lib.mkDefault true;
   eza.enable = lib.mkDefault true;
   thunderbird.enable = lib.mkDefault true;
 
@@ -72,11 +74,6 @@
     tray = {
       enable = true;
     };
-  };
-
-  services.easyeffects = {
-    enable = true;
-    preset = "HD800S (Oratory1990)";
   };
 
   xdg.configFile."k9s/skins/nord.yaml".source = builtins.fetchurl {
