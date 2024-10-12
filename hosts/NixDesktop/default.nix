@@ -28,6 +28,7 @@
 
   # Configure Clevis
   clevis = {
+    enable = true;
     jweFile = /boot/zroot.jwe;
     useTpm = true;
   };

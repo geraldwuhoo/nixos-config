@@ -31,7 +31,6 @@
     ./misc.nix
   ];
 
-  clevis.enable = lib.mkDefault true;
   oci.enable = lib.mkDefault true;
 
   nix.settings.experimental-features = [
