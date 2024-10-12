@@ -40,6 +40,9 @@
 
       # Source all k8s configs
       KUBECONFIG = ''$(\ls ~/.kube | awk -v d="$HOME/.kube/" '/conf/ { printf "%s%s:", d,$0}')'';
+
+      # Disable kopia autoupdate check since we manage it with nix
+      KOPIA_CHECK_FOR_UPDATES = "false";
     };
 
     initExtra = ''

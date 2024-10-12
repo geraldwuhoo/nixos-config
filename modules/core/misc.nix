@@ -10,9 +10,10 @@
       nil
       nixfmt-rfc-style
 
-      # Standard utils but better
-      bat
+      # Standard utils, but some better
       (btop.override { cudaSupport = config.nvidia.enable; })
+      bat
+      cryptsetup
       du-dust
       eza
       fd
@@ -89,13 +90,14 @@
       atool
       gnupg
       gocryptfs
+      kopia
       ouch
       p7zip
       pbzip2
       pigz
       sops
-      unzip
       unrar-wrapper
+      unzip
 
       # CLI tools
       appimage-run
