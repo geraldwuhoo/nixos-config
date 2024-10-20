@@ -58,9 +58,17 @@
       brave
       firefox
       tor-browser
-      ungoogled-chromium
+      (ungoogled-chromium.override {
+        commandLineArgs = [
+          "--enable-features=VaapiVideoDecodeLinuxGL"
+          "--ignore-gpu-blocklist"
+          "--enable-zero-copy"
+          "--change-stack-guard-on-fork=enable"
+        ];
+      })
 
       # GUI applications
+      audacity
       bottles
       element-desktop
       gimp
@@ -111,6 +119,7 @@
       glow
       lf
       libnotify
+      mbuffer
       neofetch
       pwgen
       rhash
@@ -161,6 +170,9 @@
     enable = true;
     lfs.enable = true;
   };
+
+  programs.chromium.enable = true;
+  programs.firefox.enable = true;
 
   hardware.keyboard.qmk.enable = true;
 
