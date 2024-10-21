@@ -122,6 +122,7 @@
       mbuffer
       neofetch
       pwgen
+      rclone
       rhash
       tealdeer
       tmux
