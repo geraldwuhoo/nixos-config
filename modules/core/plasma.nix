@@ -11,6 +11,18 @@
     konsole # I don't need it since I have other terminal emulators
   ];
 
+  # Relevant plugins and themes
+  environment.systemPackages =
+    with pkgs;
+    [
+      libsForQt5.bismuth
+      nordic
+    ]
+    ++ (with unstable; [
+      # Not yet in stable
+      kdePackages.koi
+    ]);
+
   # Open KDE connect ports
   programs.kdeconnect.enable = true;
 

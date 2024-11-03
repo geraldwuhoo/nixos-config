@@ -73,7 +73,6 @@
       element-desktop
       gimp
       libreoffice
-      libsForQt5.bismuth
       redshift
       signal-desktop
       sxhkd
