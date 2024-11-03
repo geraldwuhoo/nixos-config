@@ -113,6 +113,13 @@ abbrevs+=(
   "fdr"  "sudo firewall-cmd --reload"
 )
 
+# KDE
+abbrevs+=(
+  "klogout"   "qdbus org.kde.Shutdown /Shutdown logout"
+  "kreboot"   "qdbus org.kde.Shutdown /Shutdown logoutAndReboot"
+  "kpoweroff" "qdbus org.kde.Shutdown /Shutdown logoutAndShutdown"
+)
+
 # Ansible
 abbrevs+=(
   "ap"    "ansible-playbook"
