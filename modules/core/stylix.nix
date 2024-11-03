@@ -27,12 +27,6 @@
       };
     };
 
-    cursor = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
-      size = 24;
-    };
-
     opacity.terminal = 0.95;
   };
 }

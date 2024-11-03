@@ -119,6 +119,9 @@
           "XRenderSmoothScale".value = true;
         };
       };
+      kded5rc = {
+        "Module-gtkconfig"."autoload" = false;
+      };
     };
   };
 

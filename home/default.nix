@@ -38,12 +38,14 @@
     # release notes.
     stateVersion = "23.11"; # Please read the comment before changing.
 
-    packages = with pkgs; [
-      hydrus
-      hyperfine
-      jellyfin-mpv-shim
-      ntfy-sh
-    ];
+    packages =
+      with pkgs;
+      [
+        hyperfine
+        jellyfin-mpv-shim
+        ntfy-sh
+      ]
+      ++ (with unstable; [ hydrus ]);
 
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -73,6 +75,23 @@
     enable = true;
     tray = {
       enable = true;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = lib.mkForce {
+      name = "Nordic";
+      package = pkgs.nordic;
+    };
+    font = {
+      name = "DejaVu Sans";
+      size = 9;
+    };
+    cursorTheme = {
+      name = "Nordic-cursors";
+      size = 24;
+      package = pkgs.nordic;
     };
   };
 
