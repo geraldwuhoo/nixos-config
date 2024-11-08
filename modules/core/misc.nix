@@ -166,6 +166,7 @@
 
   programs.java.enable = true;
   programs.gnupg.agent.enable = true;
+  programs.ssh.startAgent = true;
   programs.git = {
     enable = true;
     lfs.enable = true;
