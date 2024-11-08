@@ -118,6 +118,12 @@
           "WindowsBlockCompositing".value = false;
           "XRenderSmoothScale".value = true;
         };
+        "org.kde.kdecoration2" = {
+          "BorderSize".value = "Tiny";
+          "BorderSizeAuto".value = false;
+          "library".value = "org.kde.bismuth.decoration";
+          "theme".value = "Bismuth";
+        };
       };
       kded5rc = {
         "Module-gtkconfig"."autoload" = false;
