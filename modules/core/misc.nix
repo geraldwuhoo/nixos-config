@@ -177,6 +177,8 @@
 
   hardware.keyboard.qmk.enable = true;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Get nerdfonts patched DejaVuSans package
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 }
