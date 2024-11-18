@@ -10,6 +10,7 @@
     ./mpv.nix
     ./plasma.nix
     ./rofi.nix
+    ./rsync.nix
     ./thunderbird.nix
     ./tmux.nix
     ./unclutter.nix
@@ -43,6 +44,7 @@
       [
         hyperfine
         jellyfin-mpv-shim
+        kopia
         ntfy-sh
       ]
       ++ (with unstable; [ hydrus ]);

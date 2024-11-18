@@ -97,7 +97,6 @@
       atool
       gnupg
       gocryptfs
-      kopia
       ouch
       p7zip
       pbzip2
