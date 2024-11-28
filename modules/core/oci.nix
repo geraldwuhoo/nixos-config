@@ -17,6 +17,7 @@
       defaultNetwork.settings.dns_enabled = true;
       dockerSocket.enable = true;
     };
+    systemd.services."user@".serviceConfig.Delegate = "cpuset cpu io memory pids";
 
     hardware.nvidia-container-toolkit.enable = config.nvidia.enable;
 
