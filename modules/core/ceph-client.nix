@@ -15,7 +15,7 @@
 
     # Filesystem mount points
     fileSystems."/mnt/cephfs" = {
-      device = "arch-desktop@.cephfs=/volumes/nas";
+      device = "nix-desktop@.cephfs=/volumes/nas";
       fsType = "ceph";
       noCheck = true;
       options = [
@@ -52,7 +52,7 @@
     sops.secrets.ceph-key = { };
     sops.templates."ceph-keyring" = {
       content = ''
-        [client.arch-desktop]
+        [client.nix-desktop]
         key = ${config.sops.placeholder.ceph-key}
       '';
     };
