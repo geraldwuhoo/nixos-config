@@ -35,8 +35,10 @@
       wget
 
       # Development tools
+      bruno
       docker-compose
       gitlab-ci-local
+      hugo
       pre-commit
       qmk
       qmk-udev-rules
@@ -108,7 +110,6 @@
       # CLI tools
       appimage-run
       cht-sh
-      clevis
       devour
       efibootmgr
       ffsend
@@ -119,6 +120,7 @@
       libnotify
       mbuffer
       neofetch
+      opensc
       pwgen
       rclone
       rhash
@@ -137,9 +139,12 @@
       finamp
       planify
       yt-dlp
+      clevis
 
       # Kubernetes tooling
+      cilium-cli
       fluxcd
+      k3d
       kubectl
       kubectl-klock
       kubectl-ktop
@@ -148,6 +153,7 @@
       kubernetes-helm
       kubie
       kustomize
+      linkerd
       velero
     ]);
 
