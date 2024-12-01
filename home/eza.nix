@@ -7,7 +7,7 @@
   config = lib.mkIf config.eza.enable {
     programs.eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
       git = true;
       extraOptions = [
         "--color=auto"

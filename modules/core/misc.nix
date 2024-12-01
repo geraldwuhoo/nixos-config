@@ -90,7 +90,7 @@
       mediainfo
       mpv
       oxipng
-      perl536Packages.FileMimeInfo
+      perl538Packages.FileMimeInfo
       pngquant
       sxiv
 
@@ -135,16 +135,18 @@
     ]
     ++ (with unstable; [
       # Apps that should track close to upstream due to server-side dependencies
+      clevis
       feishin
       finamp
       planify
+      wasmedge
       yt-dlp
-      clevis
 
       # Kubernetes tooling
       cilium-cli
       fluxcd
       k3d
+      kind
       kubectl
       kubectl-klock
       kubectl-ktop
