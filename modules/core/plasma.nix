@@ -3,7 +3,11 @@
   imports = [ ./x11.nix ];
 
   # display-manager
-  services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.enable = true;
+  services.displayManager = {
+    enable = true;
+    ly.enable = true;
+  };
 
   # Enable Plasma 5 because Plasma 6 extension compatibility
   services.xserver.desktopManager.plasma5.enable = true;
