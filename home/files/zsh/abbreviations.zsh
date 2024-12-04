@@ -7,7 +7,7 @@ abbrevs=(
   "ll"          "ls -lah"
   ":q"          "exit"
   "sz"          "source ~/.zshrc"
-  "wreboot"     "sudo efibootmgr --bootnext DC5B"
+  "wreboot"     "sudo efibootmgr --bootnext 0005"
   "mpv"         "devour mpv"
   "pifs"        "πfs"
   "rp"          "kquitapp5 plasmashell && kstart5 plasmashell"
