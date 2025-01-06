@@ -139,7 +139,6 @@
       feishin
       finamp
       planify
-      wasmedge
       yt-dlp
 
       # Kubernetes tooling
