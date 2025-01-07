@@ -80,6 +80,7 @@
       webcord
 
       # Media tools
+      realesrgan-ncnn-vulkan
       exiftool
       ffmpeg-full
       flameshot

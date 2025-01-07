@@ -111,7 +111,7 @@
       waifu = ''
         ''${{
           set -f
-          echo "$fx" | xargs -I{} sh -c 'f="{}"; waifu2x-ncnn-vulkan -i "$f" -o "''${f%.*}_2x.''${f##*.}"'
+          echo "$fx" | xargs -I{} sh -c 'f="{}"; realesrgan-ncnn-vulkan -i "$f" -o "''${f%.*}_2x.''${f##*.}" -n realesrgan-x4plus-anime'
         }}
       '';
       md5 = ''
