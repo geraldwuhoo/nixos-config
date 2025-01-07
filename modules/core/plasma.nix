@@ -9,9 +9,8 @@
     ly.enable = true;
   };
 
-  # Enable Plasma 5 because Plasma 6 extension compatibility
-  services.xserver.desktopManager.plasma5.enable = true;
-  environment.plasma5.excludePackages = with pkgs.libsForQt5; [
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.libsForQt5; [
     konsole # I don't need it since I have other terminal emulators
   ];
 
