@@ -75,7 +75,6 @@
       element-desktop
       gimp
       libreoffice
-      redshift
       signal-desktop
       sxhkd
       webcord

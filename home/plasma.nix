@@ -9,7 +9,7 @@
     workspace = {
       theme = "Nordic";
       colorScheme = "Nordic";
-      cursorTheme = "Nordzy-cursors";
+      # cursorTheme = "Nordzy-cursors";
       lookAndFeel = "Nordic";
       iconTheme = "Zafiro-Icons-Blue";
     };
@@ -26,22 +26,6 @@
       "rofi-3.desktop"."_launch" = "Meta+C";
       "rofi-rbw.desktop"."_launch" = "Alt+Space";
       "io.github.alainm23.planify.quick-add.desktop"."_launch" = "Meta+Shift+P";
-      bismuth = {
-        "decrease_master_size" = "Meta+H";
-        "decrease_master_win_count" = "Meta+D";
-        "focus_next_window" = "Meta+J";
-        "focus_prev_window" = "Meta+K";
-        "increase_master_size" = "Meta+L";
-        "increase_master_win_count" = "Meta+I";
-        "move_window_to_next_pos" = "Meta+Shift+J";
-        "move_window_to_prev_pos" = "Meta+Shift+K";
-        "next_layout" = "Meta+Shift+Space";
-        "push_window_to_master" = "Meta+Shift+Return";
-        "toggle_monocle_layout" = "Meta+M";
-        "toggle_three_column_layout" = "Meta+Z";
-        "toggle_tile_layout" = "Meta+T";
-        "toggle_window_floating" = "Meta+F";
-      };
       kwin = {
         "Edit Tiles" = [ ];
         "Overview" = [ ];
@@ -68,6 +52,18 @@
         "Window to Desktop 2" = "Meta+@";
         "Window to Desktop 3" = "Meta+#";
         "Window to Desktop 4" = "Meta+$";
+
+        "KrohnkiteDecrease" = "Meta+D,none,Krohnkite: Decrease";
+        "KrohnkiteFloatAll" = "Meta+Shift+F,none,Krohnkite: Toggle Float All";
+        "KrohnkiteFocusNext" = "Meta+K,none,Krohnkite: Focus Next";
+        "KrohnkiteFocusPrev" = "Meta+J,none,Krohnkite: Focus Previous";
+        "KrohnkiteIncrease" = "Meta+I,none,Krohnkite: Increase";
+        "KrohnkiteMonocleLayout" = "Meta+M,none,Krohnkite: Monocle Layout";
+        "KrohnkiteSetMaster" = "Meta+Shift+Return,none,Krohnkite: Set master";
+        "KrohnkiteShrinkWidth" = "Meta+H,none,Krohnkite: Shrink Width";
+        "KrohnkiteTileLayout" = "Meta+T,none,Krohnkite: Tile Layout";
+        "KrohnkiteToggleFloat" = "Meta+F,none,Krohnkite: Toggle Float";
+        "KrohnkitegrowWidth" = "Meta+L,none,Krohnkite: Grow Width";
       };
       plasmashell = {
         "activate task manager entry 1" = [ ];
@@ -83,7 +79,8 @@
         "rofi-2.desktop"."_k_friendly_name" = "rofi -show run";
         "rofi-3.desktop"."_k_friendly_name" = "rofi -show calc";
         "rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";
-        "io.github.alainm23.planify.quick-add.desktop"."_k_friendly_name" = "io.github.alainm23.planify.quick-add";
+        "io.github.alainm23.planify.quick-add.desktop"."_k_friendly_name" =
+          "io.github.alainm23.planify.quick-add";
       };
       kwinrc = {
         "Desktops"."Number".value = 4;
@@ -95,18 +92,14 @@
           "WobblynessLevel".value = 1;
         };
         Plugins = {
-          "bismuthEnabled".value = true;
+          "krohnkiteEnabled".value = true;
           "blurEnabled".value = true;
           "magiclampEnabled".value = true;
           "wobblywindowsEnabled".value = true;
         };
-        Script-bismuth = {
-          "maximizeSoleTile".value = true;
-          "noTileBorder".value = false;
-          "screenGapBottom".value = 8;
-          "screenGapLeft".value = 8;
-          "screenGapRight".value = 8;
-          "screenGapTop".value = 8;
+        Script-krohnkite = {
+          "directionalKeyDwm".value = true;
+          "directionalKeyFocus".value = false;
           "tileLayoutGap".value = 8;
         };
         Compositing = {
@@ -121,8 +114,6 @@
         "org.kde.kdecoration2" = {
           "BorderSize".value = "Tiny";
           "BorderSizeAuto".value = false;
-          "library".value = "org.kde.bismuth.decoration";
-          "theme".value = "Bismuth";
         };
       };
       kded5rc = {

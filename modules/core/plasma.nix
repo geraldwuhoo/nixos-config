@@ -16,7 +16,7 @@
 
   # Relevant plugins and themes
   environment.systemPackages = with pkgs; [
-    libsForQt5.bismuth
+    kdePackages.krohnkite
     nordic
   ];
 
@@ -24,14 +24,14 @@
   programs.kdeconnect.enable = true;
 
   # Enable kwallet related things
-  security.pam.services.jerry.enableKwallet = false;
-  # services.pcscd.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = false;
-  #   settings = {
-  #     default-cache-ttl = 2592000;
-  #     max-cache-ttl = 2592000;
-  #   };
-  # };
+  security.pam.services.jerry.enableKwallet = true;
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false;
+    settings = {
+      default-cache-ttl = 2592000;
+      max-cache-ttl = 2592000;
+    };
+  };
 }
