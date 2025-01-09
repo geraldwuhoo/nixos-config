@@ -3,10 +3,10 @@
   imports = [ ./x11.nix ];
 
   # display-manager
-  #services.displayManager.sddm.enable = true;
   services.displayManager = {
     enable = true;
-    ly.enable = true;
+    # ly.enable = true;
+    sddm.enable = true;
   };
 
   services.desktopManager.plasma6.enable = true;

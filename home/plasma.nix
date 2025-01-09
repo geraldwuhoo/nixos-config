@@ -53,17 +53,17 @@
         "Window to Desktop 3" = "Meta+#";
         "Window to Desktop 4" = "Meta+$";
 
-        "KrohnkiteDecrease" = "Meta+D,none,Krohnkite: Decrease";
-        "KrohnkiteFloatAll" = "Meta+Shift+F,none,Krohnkite: Toggle Float All";
-        "KrohnkiteFocusNext" = "Meta+K,none,Krohnkite: Focus Next";
-        "KrohnkiteFocusPrev" = "Meta+J,none,Krohnkite: Focus Previous";
-        "KrohnkiteIncrease" = "Meta+I,none,Krohnkite: Increase";
-        "KrohnkiteMonocleLayout" = "Meta+M,none,Krohnkite: Monocle Layout";
-        "KrohnkiteSetMaster" = "Meta+Shift+Return,none,Krohnkite: Set master";
-        "KrohnkiteShrinkWidth" = "Meta+H,none,Krohnkite: Shrink Width";
-        "KrohnkiteTileLayout" = "Meta+T,none,Krohnkite: Tile Layout";
-        "KrohnkiteToggleFloat" = "Meta+F,none,Krohnkite: Toggle Float";
-        "KrohnkitegrowWidth" = "Meta+L,none,Krohnkite: Grow Width";
+        "KrohnkiteDecrease" = "Meta+D";
+        "KrohnkiteFloatAll" = "Meta+Shift+F";
+        "KrohnkiteFocusNext" = "Meta+K";
+        "KrohnkiteFocusPrev" = "Meta+J";
+        "KrohnkiteIncrease" = "Meta+I";
+        "KrohnkiteMonocleLayout" = "Meta+M";
+        "KrohnkiteSetMaster" = "Meta+Shift+Return";
+        "KrohnkiteShrinkWidth" = "Meta+H";
+        "KrohnkiteTileLayout" = "Meta+T";
+        "KrohnkiteToggleFloat" = "Meta+F";
+        "KrohnkitegrowWidth" = "Meta+L";
       };
       plasmashell = {
         "activate task manager entry 1" = [ ];
@@ -100,7 +100,11 @@
         Script-krohnkite = {
           "directionalKeyDwm".value = true;
           "directionalKeyFocus".value = false;
-          "tileLayoutGap".value = 8;
+          "screenGapBottom" = 6;
+          "screenGapLeft" = 6;
+          "screenGapRight" = 6;
+          "screenGapTop" = 6;
+          "tileLayoutGap".value = 6;
         };
         Compositing = {
           "Enabled".value = true;
