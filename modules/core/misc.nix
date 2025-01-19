@@ -73,10 +73,12 @@
       audacity
       bottles
       element-desktop
+      filezilla
       gimp
       libreoffice
       signal-desktop
       sxhkd
+      torzu
       webcord
 
       # Media tools
