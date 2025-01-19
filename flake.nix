@@ -58,6 +58,9 @@
               "vscode-extension-MS-python-vscode-pylance"
               "vscode-extension-signageos-signageos-vscode-sops"
             ];
+          config.permittedInsecurePackages = [
+            "electron-31.7.7"
+          ];
         };
       };
       pkgs = nixpkgs.legacyPackages.${system};
