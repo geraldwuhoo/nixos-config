@@ -82,7 +82,7 @@
       webcord
 
       # Media tools
-      realesrgan-ncnn-vulkan
+      czkawka
       exiftool
       ffmpeg-full
       flameshot
@@ -94,6 +94,7 @@
       oxipng
       perl538Packages.FileMimeInfo
       pngquant
+      realesrgan-ncnn-vulkan
       sxiv
 
       # Archive/compression/encryption tools

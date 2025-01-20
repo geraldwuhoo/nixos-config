@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     chafa
     ctpv
-    ueberzugpp
+    ueberzug
   ];
 
   programs.lf = {
@@ -165,6 +165,7 @@
       "." = "set hidden!";
     };
     extraConfig = ''
+      cmd on-quit %${pkgs.ctpv}/bin/ctpv -e $id
       set cleaner ${pkgs.ctpv}/bin/ctpvclear
     '';
   };
