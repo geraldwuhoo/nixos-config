@@ -46,6 +46,7 @@
       # IaC tools
       ansible
       gron
+      hcloud
       jq
       opentofu
       yj
