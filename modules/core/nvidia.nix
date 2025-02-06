@@ -36,6 +36,9 @@
     environment.systemPackages = with pkgs; [
       gwe
       nvtopPackages.nvidia
+
+      cudaPackages.cudatoolkit
+      cudaPackages.cuda_cudart
     ];
   };
 }
