@@ -74,6 +74,7 @@
       audacity
       bottles
       element-desktop
+      feishin
       filezilla
       gimp
       libreoffice
@@ -140,7 +141,6 @@
     ++ (with unstable; [
       # Apps that should track close to upstream due to server-side dependencies
       clevis
-      feishin
       finamp
       planify
       yt-dlp
