@@ -7,6 +7,7 @@
     extraGroups = [
       "wheel"
       "libvirtd"
+      "kvm"
     ] ++ (if config.ipfs.enable then [ config.services.kubo.group ] else [ ]);
     shell = pkgs.zsh;
   };
