@@ -117,6 +117,7 @@
       cht-sh
       devour
       efibootmgr
+      fastfetch
       ffsend
       fzf
       gallery-dl
@@ -124,7 +125,6 @@
       lf
       libnotify
       mbuffer
-      neofetch
       opensc
       pwgen
       rclone
