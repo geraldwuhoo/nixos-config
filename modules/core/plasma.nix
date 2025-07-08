@@ -10,9 +10,7 @@
   };
 
   services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.libsForQt5; [
-    konsole # I don't need it since I have other terminal emulators
-  ];
+  environment.plasma6.excludePackages = with pkgs.libsForQt5; [];
 
   # Relevant plugins and themes
   environment.systemPackages = with pkgs; [

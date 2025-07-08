@@ -45,7 +45,7 @@
       KOPIA_CHECK_FOR_UPDATES = "false";
     };
 
-    initExtra = ''
+    initContent = ''
       setopt no_beep
       setopt extendedglob
 

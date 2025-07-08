@@ -80,7 +80,6 @@
       libreoffice
       signal-desktop
       sxhkd
-      torzu
       webcord
 
       # Media tools
@@ -190,5 +189,5 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Get nerdfonts patched DejaVuSans package
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
+  fonts.packages = with pkgs; [ pkgs.nerd-fonts.dejavu-sans-mono ];
 }
