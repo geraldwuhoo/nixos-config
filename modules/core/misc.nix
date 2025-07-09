@@ -19,6 +19,7 @@
       fd
       file
       htop-vim
+      iotop
       lsof
       ncdu
       openssl
