@@ -25,6 +25,7 @@
       openssl
       ripgrep
       tree
+      usbutils
 
       # Networking tools
       awscli2
@@ -84,6 +85,7 @@
       webcord
 
       # Media tools
+      android-file-transfer
       czkawka
       exiftool
       ffmpeg-full
