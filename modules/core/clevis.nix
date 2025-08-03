@@ -27,21 +27,20 @@
 
   config = lib.mkIf config.clevis.enable {
     # TPM2 and Network modules for TPM+Tang
-    boot.initrd.kernelModules =
-      [
-        "xhci_pci"
-        "igb"
-        "iwlwifi"
-      ]
-      ++ (
-        if config.clevis.useTpm then
-          [
-            "tpm_crb"
-            "tpm_tis"
-          ]
-        else
-          [ ]
-      );
+    boot.initrd.kernelModules = [
+      "xhci_pci"
+      "igb"
+      "iwlwifi"
+    ]
+    ++ (
+      if config.clevis.useTpm then
+        [
+          "tpm_crb"
+          "tpm_tis"
+        ]
+      else
+        [ ]
+    );
 
     # Manually set up Clevis auto-unlock with TPM+Tang because the clevis module broke
     boot.initrd.secrets = {
