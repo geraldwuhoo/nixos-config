@@ -16,6 +16,8 @@ abbrevs=(
   "pwc"         "pwgen --secure --num-passwords 1 __CURSOR__ | tr -d '\n' | xclip -sel clip"
   "pws"         "pwgen --secure --symbols --num-passwords 1 __CURSOR__ | tr -d '\n' | xclip -sel clip"
   "ydl"         "yt-dlp"
+  "ydl720"      "yt-dlp --format \"bestvideo[height<=?720][vcodec~='vp0?9']+bestaudio[acodec=opus]\""
+  "ydl1080"     "yt-dlp --format \"bestvideo[height<=?1080][vcodec~='vp0?9']+bestaudio[acodec=opus]\""
   "gdl"         "gallery-dl"
   "tma"         "tmux a"
 )
