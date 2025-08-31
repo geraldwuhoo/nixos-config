@@ -122,10 +122,10 @@
       fastfetch
       ffsend
       fzf
-      gallery-dl
       glow
       lf
       libnotify
+      lm_sensors
       mbuffer
       opensc
       pwgen
@@ -144,6 +144,7 @@
       # Apps that should track close to upstream due to server-side dependencies
       clevis
       finamp
+      gallery-dl
       planify
       yt-dlp
 
@@ -166,6 +167,10 @@
 
   # Programs
   programs.dconf.enable = true;
+  programs.coolercontrol = {
+    enable = true;
+    nvidiaSupport = config.nvidia.enable;
+  };
 
   # Disable system zsh stuff to avoid cache invalidation with zinit in home-manager
   # Fixes slow zsh interactive shell start up time

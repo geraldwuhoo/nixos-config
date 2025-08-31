@@ -18,7 +18,10 @@
     "usbhid"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "it87"
+    "kvm-amd"
+  ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
 
