@@ -31,7 +31,6 @@
     stylix = {
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
   };
 
@@ -90,7 +89,7 @@
                 useUserPackages = true;
                 backupFileExtension = "bak";
 
-                sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+                sharedModules = [ plasma-manager.homeModules.plasma-manager ];
                 users.jerry = import ./home;
               };
             }
