@@ -44,6 +44,7 @@
       pre-commit
       qmk
       qmk-udev-rules
+      v4l-utils
 
       # IaC tools
       ansible
@@ -75,11 +76,14 @@
       # GUI applications
       audacity
       bottles
+      cheese
+      droidcam
       element-desktop
       feishin
       filezilla
       gimp
       libreoffice
+      mangohud
       signal-desktop
       sxhkd
       webcord

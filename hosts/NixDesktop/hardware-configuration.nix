@@ -21,9 +21,11 @@
   boot.kernelModules = [
     "it87"
     "kvm-amd"
+    "v4l2loopback"
   ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.supportedFilesystems = [ "zfs" ];
+  programs.adb.enable = true;
 
   boot.kernelParams = [
     "zfs.zfs_arc_min=268435456"

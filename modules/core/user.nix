@@ -8,6 +8,7 @@
       "wheel"
       "libvirtd"
       "kvm"
+      "video"
     ]
     ++ (if config.ipfs.enable then [ config.services.kubo.group ] else [ ]);
     shell = pkgs.zsh;
