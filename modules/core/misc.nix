@@ -77,6 +77,7 @@
       audacity
       bottles
       cheese
+      darktable
       droidcam
       element-desktop
       feishin
