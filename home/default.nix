@@ -110,4 +110,9 @@
   };
 
   programs.obs-studio.enable = true;
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 }
