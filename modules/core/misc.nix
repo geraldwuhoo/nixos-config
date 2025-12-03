@@ -14,7 +14,7 @@
       (btop.override { cudaSupport = config.nvidia.enable; })
       bat
       cryptsetup
-      du-dust
+      dust
       eza
       fd
       file
@@ -172,10 +172,6 @@
 
   # Programs
   programs.dconf.enable = true;
-  programs.coolercontrol = {
-    enable = true;
-    nvidiaSupport = config.nvidia.enable;
-  };
 
   # Disable system zsh stuff to avoid cache invalidation with zinit in home-manager
   # Fixes slow zsh interactive shell start up time

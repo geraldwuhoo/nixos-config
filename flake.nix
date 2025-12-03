@@ -9,7 +9,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     sops-nix = {
@@ -18,7 +18,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -29,7 +29,7 @@
     };
 
     stylix = {
-      url = "github:danth/stylix/release-25.05";
+      url = "github:danth/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -62,6 +62,15 @@
           ];
         };
       };
+      overlay-hydrus = final: prev: {
+        hydrus = prev.hydrus.overrideAttrs (oldAttrs: {
+          doCheck = false;
+          doInstallCheck = false;
+          propagatedBuildInputs = builtins.filter (
+            dep: dep != final.python3Packages.psd-tools
+          ) oldAttrs.propagatedBuildInputs;
+        });
+      };
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -74,7 +83,7 @@
             (
               { config, pkgs, ... }:
               {
-                nixpkgs.overlays = [ overlay-unstable ];
+                nixpkgs.overlays = [ overlay-unstable overlay-hydrus ];
               }
             )
             ./hosts/NixDesktop
