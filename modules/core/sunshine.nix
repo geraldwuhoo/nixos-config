@@ -12,7 +12,7 @@
   config = lib.mkIf config.sunshine.enable {
     services.sunshine = {
       enable = true;
-      #package = pkgs.sunshine.override { cudaSupport = config.nvidia.enable; };
+      package = pkgs.sunshine.override { cudaSupport = config.nvidia.enable; };
       openFirewall = true;
       capSysAdmin = true;
 
