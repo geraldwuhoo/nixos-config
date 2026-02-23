@@ -91,7 +91,7 @@
 
       # Media tools
       android-file-transfer
-      czkawka
+      czkawka-full
       exiftool
       ffmpeg-full
       flameshot
