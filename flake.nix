@@ -92,16 +92,19 @@
             { nix.settings.trusted-users = [ "jerry" ]; }
 
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                backupFileExtension = "bak";
+            (
+              { config, ... }:
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  backupFileExtension = "bak";
 
-                sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-                users.jerry = import ./home;
-              };
-            }
+                  sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+                  users.jerry = import ./home;
+                };
+              }
+            )
           ];
         };
       };
