@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ osConfig, pkgs, lib, ... }:
 {
   imports = [
     ./alacritty.nix
@@ -109,7 +109,10 @@
     settings.k9s.ui.skin = "nord";
   };
 
-  programs.obs-studio.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    package = pkgs.obs-studio.override { cudaSupport = osConfig.nvidia.enable; };
+  };
 
   services.nextcloud-client = {
     enable = true;

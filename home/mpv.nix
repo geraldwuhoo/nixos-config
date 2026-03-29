@@ -1,12 +1,13 @@
-{ pkgs, ... }:
+{ osConfig, pkgs, ... }:
 {
   programs.mpv = {
     enable = true;
     scripts = with pkgs.mpvScripts; [ sponsorblock ];
     config = {
       input-ipc-server = "/tmp/mpvsocket";
-      hwdec = "auto-copy";
+      hwdec = if osConfig.nvidia.enable then "nvdec" else "auto";
       hwdec-codecs = "all";
+      vo = "gpu-next";
       hr-seek-framedrop = "no";
       no-resume-playback = "";
       ytdl-format = "bestvideo[height<=?1440][fps<=?60]+bestaudio/best";
