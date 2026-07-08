@@ -48,6 +48,18 @@
     gnupg.sshKeyPaths = [ ];
   };
 
+  services.zfs = {
+    autoScrub.enable = false;
+    autoSnapshot = {
+      enable = true;
+      frequent = 4;
+      hourly = 12;
+      daily = 3;
+      weekly = 2;
+      flags = "-k -p --utc";
+    };
+  };
+
   boot.loader.grub.configurationLimit = 20;
   boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
 

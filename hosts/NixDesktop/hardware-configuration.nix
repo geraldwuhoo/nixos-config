@@ -33,20 +33,21 @@
     "kernel.unprivileged_userns_clone=1"
   ];
 
-  fileSystems."/" = {
-    device = "zroot/ROOT/nix";
-    fsType = "zfs";
-  };
+  fileSystems."/" =
+    { device = "zroot/nixos/root";
+      fsType = "zfs";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/212D-9AD1";
-    fsType = "vfat";
-  };
+  fileSystems."/nix" =
+    { device = "zroot/nixos/nix";
+      fsType = "zfs";
+    };
 
-  fileSystems."/nix" = {
-    device = "zroot/nix";
-    fsType = "zfs";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/F40A-6120";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
   fileSystems."/scratch" = {
     device = "tmpfs";
@@ -56,8 +57,6 @@
       "mode=1777"
     ];
   };
-
-  swapDevices = [ { device = "/dev/disk/by-uuid/9612a903-812b-4b6a-8eec-495778663dcb"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
