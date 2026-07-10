@@ -8,7 +8,7 @@
       # Nix
       home-manager
       nil
-      nixfmt-rfc-style
+      nixfmt
 
       # Standard utils, but some better
       (btop.override { cudaSupport = config.nvidia.enable; })
@@ -101,7 +101,7 @@
       mediainfo
       mpv
       oxipng
-      perl538Packages.FileMimeInfo
+      perl5Packages.FileMimeInfo
       pngquant
       realesrgan-ncnn-vulkan
       sxiv
@@ -120,6 +120,7 @@
       unzip
 
       # CLI tools
+      android-tools
       appimage-run
       cht-sh
       devour

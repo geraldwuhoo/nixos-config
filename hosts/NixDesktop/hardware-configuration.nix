@@ -25,7 +25,7 @@
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.supportedFilesystems = [ "zfs" ];
-  programs.adb.enable = true;
+  boot.zfs.forceImportRoot = false;
 
   boot.kernelParams = [
     "zfs.zfs_arc_min=268435456"

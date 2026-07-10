@@ -46,6 +46,7 @@
     boot.initrd.secrets = {
       "/etc/clevis/zroot.jwe" = config.clevis.jweFile;
     };
+    boot.initrd.systemd.enable = false;
     boot.initrd.network =
       let
         root = config.clevis.zfsEncryptionroot;

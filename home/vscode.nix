@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # Stylix auto-theming is ass compared to the Nordic package
-  stylix.targets.vscode.enable = false;
+  stylix.targets.vscodium.enable = false;
 
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     # Use unstable Codium package + extensions for latest versions
     package = pkgs.unstable.vscodium;

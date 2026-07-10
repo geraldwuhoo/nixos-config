@@ -50,8 +50,8 @@
             name = "Low Res Desktop";
             prep-cmd = [
               {
-                do = "${pkgs.xorg.xrandr} --output HDMI-1 --mode 1920x1080";
-                undo = "${pkgs.xorg.xrandr} --output HDMI-1 --mode 1920x1200";
+                do = "${pkgs.xrandr} --output HDMI-1 --mode 1920x1080";
+                undo = "${pkgs.xrandr} --output HDMI-1 --mode 1920x1200";
               }
             ];
           }
