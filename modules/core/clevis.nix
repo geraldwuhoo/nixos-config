@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -42,24 +41,27 @@
         [ ]
     );
 
-    # Manually set up Clevis auto-unlock with TPM+Tang because the clevis module broke
-    boot.initrd.secrets = {
-      "/etc/clevis/zroot.jwe" = config.clevis.jweFile;
+    boot.initrd.clevis = {
+      enable = true;
+      useTang = true;
+      devices.${config.clevis.zfsEncryptionroot}.secretFile = config.clevis.jweFile;
     };
-    boot.initrd.systemd.enable = false;
-    boot.initrd.network =
-      let
-        root = config.clevis.zfsEncryptionroot;
-      in
-      {
-        enable = true;
-        udhcpc.enable = true;
-        postCommands = ''
-          export PATH="${pkgs.curl}/bin:${pkgs.clevis}/bin:$PATH"
-          zpool import ${root}
-          echo "running clevis to unlock ${root}"
-          clevis decrypt < /etc/clevis/zroot.jwe | zfs load-key ${root}
-        '';
+
+    boot.initrd.systemd.enable = true;
+    boot.initrd.network.enable = true;
+    # NetworkManager forces networking.useDHCP off, so the initrd needs its own.
+    boot.initrd.systemd.network.networks."99-ethernet-default-dhcp" = {
+      matchConfig = {
+        Type = "ether";
+        Kind = "!*";
       };
+      networkConfig.DHCP = "yes";
+    };
+
+    # Defaults to false under systemd initrd, but stage 2 is NetworkManager.
+    boot.initrd.network.flushBeforeStage2 = true;
+
+    # Fall back to the passphrase prompt quickly when the network is down.
+    boot.initrd.systemd.network.wait-online.timeout = 20;
   };
 }
