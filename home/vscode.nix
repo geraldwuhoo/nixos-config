@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.vscodium.enable = false;
@@ -47,6 +47,9 @@
         # Theming
         arcticicestudio.nord-visual-studio-code
         pkief.material-icon-theme
+
+        # Clanker
+        anthropic.claude-code
       ];
 
       userSettings = {
@@ -69,6 +72,12 @@
         "window.menuBarVisibility" = "toggle";
         "window.zoomLevel" = -1.5;
 
+        # Clanker
+        "claudeCode.useTerminal" = true;
+
+        # Why does this even exist
+        "terminal.integrated.stickyScroll.enabled" = false;
+
         # vim niceties
         "editor.lineNumbers" = "relative";
         "vim.smartRelativeLine" = true;
@@ -87,5 +96,10 @@
         "redhat.telemetry.enabled" = false;
       };
     };
+  };
+
+  programs.claude-code = {
+    enable = true;
+    package = pkgs.unstable.claude-code;
   };
 }

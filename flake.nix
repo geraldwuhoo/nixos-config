@@ -56,6 +56,10 @@
               # VSCode extensions
               "vscode-extension-MS-python-vscode-pylance"
               "vscode-extension-signageos-signageos-vscode-sops"
+              "vscode-extension-anthropic-claude-code"
+
+              # Clanker
+              "claude-code"
             ];
           config.permittedInsecurePackages = [
             "electron-31.7.7"
