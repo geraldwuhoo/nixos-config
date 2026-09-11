@@ -1,21 +1,29 @@
 { pkgs, ... }:
+let
+  # Python ueberzug crashes on startup; ueberzugpp ships a drop-in `ueberzug`.
+  ctpv = pkgs.ctpv.override { ueberzug = pkgs.ueberzugpp; };
+
+  # lf r41 passes a 6th argument, which ctpv reads as the server id.
+  ctpvPreviewer = pkgs.writeShellScript "ctpv-previewer" ''
+    if [ "$#" -gt 5 ]; then
+      exec ${ctpv}/bin/ctpv "$1" "$2" "$3" "$4" "$5"
+    fi
+    exec ${ctpv}/bin/ctpv "$@"
+  '';
+in
 {
   xdg.configFile."lf/icons".source = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/gokcehan/lf/r32/etc/icons.example";
     sha256 = "0141nzyjr3mybkbn9p0wwv5l0d0scdc2r7pl8s1lgh11wi2l771x";
   };
 
-  home.packages = with pkgs; [
-    chafa
-    ctpv
-    ueberzug
-  ];
+  home.packages = [ ctpv ];
 
   programs.lf = {
     enable = true;
     previewer = {
       keybinding = "i";
-      source = "${pkgs.ctpv}/bin/ctpv";
+      source = ctpvPreviewer;
     };
     settings = {
       ratios = [
@@ -165,8 +173,11 @@
       "." = "set hidden!";
     };
     extraConfig = ''
-      cmd on-quit %${pkgs.ctpv}/bin/ctpv -e $id
-      set cleaner ${pkgs.ctpv}/bin/ctpvclear
+      set cleaner ${ctpv}/bin/ctpvclear
+      &${ctpv}/bin/ctpv -s $id
+      # on-quit clears the image at once; ctpvquit only polls once a second.
+      cmd on-quit %${ctpv}/bin/ctpv -e $id
+      &${ctpv}/bin/ctpvquit $id
     '';
   };
 }
