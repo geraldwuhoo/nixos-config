@@ -1,14 +1,36 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  # Not packaged in nixpkgs, so pin them here instead of cloning at shell startup.
+  minimal-prompt = pkgs.fetchFromGitHub {
+    owner = "subnixr";
+    repo = "minimal";
+    rev = "6588a399744f34194a25988b4c159cb8b8c67e27";
+    hash = "sha256-r5AIk7TzXQ5x+mXRA6isWCn0FvmICeFR36k5Kq4s+Yk=";
+  };
+  kube-ps1 = pkgs.fetchFromGitHub {
+    owner = "jonmosco";
+    repo = "kube-ps1";
+    rev = "b4cd09ec8d4dc007173e28da40aeebf8eff8c87f";
+    hash = "sha256-b72f0uha4JrdOuDNXE8zUNLBn1ulWQUgJmn0UtjfzNE=";
+  };
+  zshFiles = ./files/zsh;
+in
 {
   programs.fzf.enable = true;
+  programs.zoxide.enable = true;
 
-  home.file.".zsh/bindkey.zsh".source = ./files/zsh/bindkey.zsh;
-  home.file.".zsh/aliases.zsh".source = ./files/zsh/aliases.zsh;
-  home.file.".zsh/abbreviations.zsh".source = ./files/zsh/abbreviations.zsh;
+  # Extra completion definitions; home-manager puts profile site-functions on fpath.
+  home.packages = [ (lib.lowPrio pkgs.zsh-completions) ];
 
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
+
+    autosuggestion.enable = true;
 
     history = {
       size = 1000000;
@@ -17,6 +39,77 @@
       ignoreSpace = true;
       share = true;
     };
+
+    historySubstringSearch.enable = true;
+
+    syntaxHighlighting = {
+      enable = true;
+      highlighters = [
+        "main"
+        "brackets"
+        "pattern"
+        "line"
+        "cursor"
+        "root"
+      ];
+      styles = {
+        alias = "fg=green,bold";
+        builtin = "fg=blue";
+        command = "fg=green";
+        commandseparator = "fg=cyan,bold";
+        cursor = "bg=magenta";
+        double-hyphen-option = "fg=magenta";
+        double-quoted-argument = "fg=yellow";
+        function = "fg=blue,bold";
+        path = "fg=yellow,underline";
+        precommand = "fg=blue,underline";
+        redirection = "fg=cyan";
+        single-hyphen-option = "fg=magenta";
+        single-quoted-argument = "fg=yellow";
+      };
+      patterns = {
+        "rm*-rf*" = "fg=white,bold,bg=red";
+      };
+    };
+
+    # Cache the completion dump and only regenerate it once a day.
+    completionInit = ''
+      autoload -Uz compinit
+      () {
+        setopt local_options extended_glob
+        local dump="''${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+        mkdir -p ''${dump:h}
+        if [[ -n $dump(#qN.mh-24) ]]; then
+          compinit -C -d $dump
+        else
+          compinit -d $dump
+          zcompile -R -- $dump
+        fi
+      }
+    '';
+
+    plugins = [
+      {
+        name = "command-time";
+        src = pkgs.zsh-command-time;
+        file = "share/zsh/plugins/command-time/command-time.plugin.zsh";
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+      {
+        name = "minimal";
+        src = minimal-prompt;
+        file = "minimal.zsh";
+      }
+      {
+        name = "kube-ps1";
+        src = kube-ps1;
+        file = "kube-ps1.sh";
+      }
+    ];
 
     sessionVariables = {
       # Partial line character
@@ -45,104 +138,53 @@
       KOPIA_CHECK_FOR_UPDATES = "false";
     };
 
-    initContent = ''
-      setopt no_beep
-      setopt extendedglob
-
+    setOptions = [
+      "NO_BEEP"
+      "EXTENDED_GLOB"
+      "CLOBBER"
+      "INC_APPEND_HISTORY"
       # allow background jobs to run after terminal closes
-      setopt NO_HUP
-      setopt NO_CHECK_JOBS
+      "NO_HUP"
+      "NO_CHECK_JOBS"
+    ];
 
-      # appends every command to the history file once it is executed
-      setopt inc_append_history
-      setopt clobber
+    initContent = lib.mkMerge [
+      # Before compinit and plugin sourcing, so plugins see the same options.
+      (lib.mkOrder 550 ''
+        # Fix time format bc the bash format is 10/10 better
+        export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+      '')
 
-      # Fix time format bc the bash format is 10/10 better
-      export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+      # Default order (1000): after plugins are sourced, before syntax highlighting.
+      ''
+        # command-time
+        ZSH_COMMAND_TIME_MIN_SECONDS=10
+        ZSH_COMMAND_TIME_EXCLUDE=(ssh xxh vi vim ex ed tmux z zi top htop btm)
 
-      # zinit
-      ZINIT_HOME="${config.home.homeDirectory}/.local/share/zinit/zinit.git"
-      [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-      [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-      source "''${ZINIT_HOME}/zinit.zsh"
+        # minimal prompt
+        MNML_OK_COLOR=6
+        # change prompt char if in nix-shell
+        _nix_shell_char () {
+          [[ -n "''${IN_NIX_SHELL}" ]] && MNML_USER_CHAR="❄" || MNML_USER_CHAR="λ"
+        }
+        precmd_functions+=(_nix_shell_char)
 
-      # command-time
-      zinit ice wait lucid
-      zinit light popstas/zsh-command-time
-      ZSH_COMMAND_TIME_MIN_SECONDS=10
-      ZSH_COMMAND_TIME_EXCLUDE=(ssh xxh vi vim ex ed tmux z zi top htop btm)
-
-      # history-substring-search
-      zinit ice wait"0a" lucid
-      zinit light zsh-users/zsh-history-substring-search
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
-
-      # syntax highlighting
-      zinit ice wait"0b" lucid
-      zinit light zsh-users/zsh-syntax-highlighting
-      # highlighters
-      ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line cursor root)
-      # colors
-      typeset -A ZSH_HIGHLIGHT_STYLES
-      ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
-      ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue'
-      ZSH_HIGHLIGHT_STYLES[command]='fg=green'
-      ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
-      ZSH_HIGHLIGHT_STYLES[cursor]='bg=magenta'
-      ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta'
-      ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
-      ZSH_HIGHLIGHT_STYLES[function]='fg=blue,bold'
-      ZSH_HIGHLIGHT_STYLES[path]='fg=yellow,underline'
-      ZSH_HIGHLIGHT_STYLES[precommand]='fg=blue,underline'
-      ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-      ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
-      ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
-      # patterns
-      typeset -A ZSH_HIGHLIGHT_PATTERNS
-      ZSH_HIGHLIGHT_PATTERNS+=('rm*-rf*' 'fg=white,bold,bg=red')
-
-      # autosuggestions
-      zinit ice wait"0c" lucid atload"_zsh_autosuggest_start"
-      zinit light zsh-users/zsh-autosuggestions
-
-      # completions
-      zinit wait lucid atload"zicompinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION; zicdreplay" blockf for \
-          zsh-users/zsh-completions \
-          Aloxaf/fzf-tab
-
-      # minimal2
-      zinit light subnixr/minimal
-      MNML_OK_COLOR=6
-      # change prompt char if in nix-shell
-      _nix_shell_char () {
-        [[ -n "''${IN_NIX_SHELL}" ]] && MNML_USER_CHAR="❄" || MNML_USER_CHAR="λ"
-      }
-      precmd_functions+=_nix_shell_char
-
-      # zoxide
-      zinit ice wait"0d" as"command" from"gh-r" lucid \
-        mv"zoxide -> zoxide" \
-        atclone"./zoxide init zsh > init.zsh" \
-        atpull"%atclone" src"init.zsh" nocompile'!' \
-        atload'unalias zi'
-      zinit light ajeetdsouza/zoxide
-
-      # kube-ps1
-      zinit light jonmosco/kube-ps1
-      KUBE_PS1_SYMBOL_DEFAULT="k8s"
-      KUBE_PS1_SYMBOL_PADDING=false
-      KUBE_PS1_SUFFIX=') '
-      function get_cluster_short() {
+        # kube-ps1
+        KUBE_PS1_SYMBOL_DEFAULT="k8s"
+        KUBE_PS1_SYMBOL_PADDING=false
+        KUBE_PS1_SUFFIX=') '
+        get_cluster_short() {
           echo "$1" | cut -d'@' -f2
-      }
-      KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-      KUBE_PS1_NS_ENABLE=false
-      PROMPT='$(kube_ps1)'"$PROMPT"
-      kubeoff -g
+        }
+        KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+        KUBE_PS1_NS_ENABLE=false
+        PROMPT='$(kube_ps1)'"$PROMPT"
+        kubeoff -g
 
-      # Source everything from ~/.zsh/*.zsh
-      for f ("$HOME"/.zsh/*.zsh) . $f
-    '';
+        source ${zshFiles}/bindkey.zsh
+        source ${zshFiles}/aliases.zsh
+        source ${zshFiles}/abbreviations.zsh
+      ''
+    ];
   };
 }
