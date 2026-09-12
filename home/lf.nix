@@ -175,8 +175,9 @@ in
     extraConfig = ''
       set cleaner ${ctpv}/bin/ctpvclear
       &${ctpv}/bin/ctpv -s $id
-      # on-quit clears the image at once; ctpvquit only polls once a second.
-      cmd on-quit %${ctpv}/bin/ctpv -e $id
+      # Clear the image at once; ending the server here instead would race lf's
+      # cleaner and leave a stray /tmp/ctpvfifo.* behind. ctpvquit ends it after.
+      cmd on-quit %${ctpv}/bin/ctpv -c $id
       &${ctpv}/bin/ctpvquit $id
     '';
   };
