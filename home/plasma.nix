@@ -16,7 +16,7 @@
 
     shortcuts = {
       "flameshot.desktop"."Capture" = "Meta+X";
-      "alacritty-2.desktop"."_launch" = "Meta+Return";
+      "ghostty-launch.desktop"."_launch" = "Meta+Return";
       "ksmserver"."Lock Session" = [
         "Screensaver"
         "Meta+Shift+A"
@@ -75,7 +75,7 @@
 
     configFile = {
       "kglobalshortcutsrc" = {
-        "alacritty-2.desktop"."_k_friendly_name" = "alacritty msg create-window || alacritty";
+        "ghostty-launch.desktop"."_k_friendly_name" = "ghostty +new-window";
         "rofi-2.desktop"."_k_friendly_name" = "rofi -show run";
         "rofi-3.desktop"."_k_friendly_name" = "rofi -show calc";
         "rofi-rbw.desktop"."_k_friendly_name" = "rofi-rbw";

@@ -1,10 +1,10 @@
 { osConfig, pkgs, lib, ... }:
 {
   imports = [
-    ./alacritty.nix
     ./direnv.nix
     ./easyeffects.nix
     ./eza.nix
+    ./ghostty.nix
     ./joplin.nix
     ./lf.nix
     ./mpv.nix
