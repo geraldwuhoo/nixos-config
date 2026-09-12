@@ -1,7 +1,17 @@
 { pkgs, ... }:
 let
+  # ueberzugpp sizes both axes from max(horizontal, vertical) padding, which
+  # rounds the cell width down in short windows and shifts previews left.
+  ueberzugpp = pkgs.ueberzugpp.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace src/terminal.cpp \
+        --replace-fail 'static_cast<uint16_t>(std::max(padding_horiz, padding_vert))' 'static_cast<uint16_t>(padding_horiz)' \
+        --replace-fail 'padding_vertical = padding_horizontal;' 'padding_vertical = static_cast<uint16_t>(padding_vert);'
+    '';
+  });
+
   # Python ueberzug crashes on startup; ueberzugpp ships a drop-in `ueberzug`.
-  ctpv = pkgs.ctpv.override { ueberzug = pkgs.ueberzugpp; };
+  ctpv = pkgs.ctpv.override { ueberzug = ueberzugpp; };
 
   # lf r41 passes a 6th argument, which ctpv reads as the server id.
   ctpvPreviewer = pkgs.writeShellScript "ctpv-previewer" ''
