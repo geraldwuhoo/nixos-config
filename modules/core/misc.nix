@@ -148,7 +148,6 @@
     ]
     ++ (with unstable; [
       # Apps that should track close to upstream due to server-side dependencies
-      clevis
       finamp
       gallery-dl
       planify

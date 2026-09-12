@@ -1,8 +1,17 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
+let
+  # asciidoc-full pulls dblatex -> inkscape; only `a2x -f manpage` is used.
+  asciidoc = pkgs.asciidoc;
+  clevisPackage = pkgs.clevis.override {
+    asciidoc-full = asciidoc;
+    luksmeta = pkgs.luksmeta.override { inherit asciidoc; };
+  };
+in
 {
   options = {
     clevis = with lib; {
@@ -41,8 +50,11 @@
         [ ]
     );
 
+    environment.systemPackages = [ clevisPackage ];
+
     boot.initrd.clevis = {
       enable = true;
+      package = clevisPackage;
       useTang = true;
       devices.${config.clevis.zfsEncryptionroot}.secretFile = config.clevis.jweFile;
     };

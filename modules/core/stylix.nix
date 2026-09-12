@@ -3,6 +3,9 @@
   stylix = {
     enable = true;
 
+    # Overlay rebuilds every gtksourceview consumer; home-manager themes it anyway.
+    targets.gtksourceview.enable = false;
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     polarity = "dark";
 
