@@ -7,6 +7,7 @@
     ./firefox.nix
     ./ghostty.nix
     ./git.nix
+    ./gpg-agent.nix
     ./joplin.nix
     ./lf.nix
     ./mpv.nix

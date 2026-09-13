@@ -24,12 +24,4 @@
   # Enable kwallet related things
   security.pam.services.jerry.enableKwallet = true;
   services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = false;
-    settings = {
-      default-cache-ttl = 2592000;
-      max-cache-ttl = 2592000;
-    };
-  };
 }
