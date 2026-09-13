@@ -1,21 +1,57 @@
-{ ... }:
+{ lib, pkgs, ... }:
+let
+  bufpicker = pkgs.vimUtils.buildVimPlugin {
+    pname = "bufpicker";
+    version = "0-unstable-2022-04-09";
+    src = pkgs.fetchFromGitHub {
+      owner = "yegappan";
+      repo = "bufpicker";
+      rev = "504af1f37a175ce4356fe2530cab4550f1d96eaa";
+      hash = "sha256-8/nkgfxRqgDChUsnO8UVer+2HSdqws+EIuGri1yBklg=";
+    };
+  };
+in
 {
   programs.vim = {
     enable = true;
     defaultEditor = true;
 
-    extraConfig = ''
-      set nocompatible
-      filetype off
+    plugins = with pkgs.vimPlugins; [
+      nord-vim
+      # vim-syntastic
+      ale
+      # YouCompleteMe
+      vim-easymotion
+      indentLine
+      # Colored brackets
+      rainbow
+      vim-airline
+      # remove trailing whitespace
+      vim-trailing-whitespace
+      nerdtree
+      fzfWrapper
+      # Buffer explorer
+      bufpicker
+      # Window swap plugin
+      vim-windowswap
+      # goyo plugin (reading mode)
+      goyo-vim
+      vim-tmux-navigator
+    ];
 
+    settings = {
+      # Enable relative line numbers
+      relativenumber = true;
+      number = true;
+      # Set tabs to 4 spaces
+      tabstop = 4;
+      shiftwidth = 4;
+      expandtab = true;
+    };
+
+    extraConfig = lib.mkAfter ''
       " Remap leader to <space>
       let mapleader=" "
-
-      " Enable syntax highlighting
-      syntax enable
-
-      " Enable relative line numbers
-      set relativenumber
 
       " Set encoding to UTF-8 for YCM
       set encoding=utf-8
@@ -32,7 +68,7 @@
 
       " disable viminfo
       let skip_defaults_vim=1
-      set viminfo=""
+      set viminfo=
       set viminfofile=NONE
 
       " Copy and paste system clipboard
@@ -43,7 +79,6 @@
       map <Leader>s :setlocal spell! spelllang=en_us<CR>
 
       " Toggle line numbers with ctrl-N
-      set number
       highlight LineNr ctermfg=grey
       nmap <C-n> :set invnumber<CR>:set relativenumber!<CR>
 
@@ -55,57 +90,25 @@
       vnoremap <Leader>btoa c<C-r>=system('base64 --decode', @")<CR><ESC>
 
       " Reload .vimrc
-      noremap <Leader><Leader>r :so ~/.vimrc <CR>
+      noremap <Leader><Leader>r :so $MYVIMRC <CR>
 
-      set rtp+=~/.vim/bundle/Vundle.vim
-      call vundle#begin()
-
-      " Vundle package
-      Plugin 'VundleVim/Vundle.vim'
-
-      " Nord Theme
-      Plugin 'arcticicestudio/nord-vim'
       let g:nord_cursor_line_number_background = 1
       let g:nord_bold_vertical_split_line = 1
 
-      " " Syntastic
-      " Plugin 'vim-syntastic/syntastic.git'
-
-      " ALE
-      Plugin 'dense-analysis/ale'
-
-      " YouCompleteMe
-      " cd ~/.vim/bundle/YouCompleteMe
-      " python3 install.py --clangd-completer --java-completer --go-completer --rust-completer
-      " Plugin 'ycm-core/YouCompleteMe'
       " noremap <Leader>g :YcmCompleter GoTo<CR>
 
-      " Easymotion
-      Plugin 'easymotion/vim-easymotion.git'
-
-      " indentLine
-      Plugin 'Yggdroot/indentLine'
       let g:indentLine_conceallevel = 2
       let g:indentLine_concealcursor = 'nc'
       let g:indentLine_fileTypeExclude = ['json']
       noremap <Leader>i :IndentLinesToggle<CR>
 
-      " Colored brackets
-      Plugin 'luochen1990/rainbow'
       let g:rainbow_active = 1
 
-      " vim-airline
-      Plugin 'vim-airline/vim-airline'
       " vim-airline without new split
       set laststatus=2
       " powerline fonts
       let g:airline_powerline_fonts = 1
 
-      " remove trailing whitespace
-      Plugin 'bronson/vim-trailing-whitespace'
-
-      " NERDTree
-      Plugin 'scrooloose/nerdtree'
       " Autoclose
       autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
       " Open/close NERDTree
@@ -120,34 +123,14 @@
       let NERDTreeMinimalUI = 1
       let NERDTreeDirArrows = 1
 
-      " FZF
-      Plugin 'junegunn/fzf'
-
-      " Buffer explorer
-      Plugin 'yegappan/bufpicker'
       noremap <Leader>b :BufPicker<CR>
 
-      " Window swap plugin
-      Plugin 'wesQ3/vim-windowswap'
-
-      " goyo plugin (reading mode)
-      Plugin 'junegunn/goyo.vim'
       map <Leader>o :Goyo \| set linebreak<CR>
-
-      " vim-tmux navigation
-      Plugin 'christoomey/vim-tmux-navigator'
-
-      " End vundle
-      call vundle#end()
 
       " Set colorscheme
       colorscheme nord
 
-      " Set tabs to 4 spaces
-      set ts=4
-      set sw=4
       set sts=4
-      set expandtab
 
       " yaml settings
       autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab smartindent
@@ -160,9 +143,7 @@
       autocmd Filetype nasm setlocal ts=8 sw=8 noexpandtab smartindent
 
       " make settings
-      autocmd Filetype make set noexpandtab
-
-      filetype plugin indent on
+      autocmd Filetype make setlocal noexpandtab
     '';
   };
 }

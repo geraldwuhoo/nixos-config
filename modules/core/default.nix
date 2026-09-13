@@ -56,6 +56,10 @@
       "steam-unwrapped"
       "steam-original"
       "steam-run"
+
+      # Vim
+      "vim-trailing-whitespace"
+      "vim-windowswap"
     ]
     # CUDA packages
     || lib.hasPrefix "cuda" (lib.getName pkg)
