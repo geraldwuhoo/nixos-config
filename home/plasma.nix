@@ -2,6 +2,7 @@
 {
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.kde.enable = false;
+  stylix.targets.qt.enable = false;
 
   programs.plasma = {
     enable = true;
