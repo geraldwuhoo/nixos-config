@@ -29,7 +29,7 @@ in
       # remove trailing whitespace
       vim-trailing-whitespace
       nerdtree
-      fzfWrapper
+      fzf-wrapper
       # Buffer explorer
       bufpicker
       # Window swap plugin
