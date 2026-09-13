@@ -32,6 +32,11 @@
       url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    arkenfox = {
+      url = "github:arkenfox/user.js";
+      flake = false;
+    };
   };
 
   outputs =
@@ -103,6 +108,7 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   backupFileExtension = "bak";
+                  extraSpecialArgs = { inherit inputs; };
 
                   sharedModules = [ plasma-manager.homeModules.plasma-manager ];
                   users.jerry = import ./home;

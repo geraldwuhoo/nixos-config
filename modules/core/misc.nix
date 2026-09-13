@@ -62,7 +62,6 @@
 
       # Browsers
       brave
-      firefox
       tor-browser
       (ungoogled-chromium.override {
         commandLineArgs = [
@@ -191,7 +190,6 @@
   };
 
   programs.chromium.enable = true;
-  programs.firefox.enable = true;
 
   hardware.keyboard.qmk.enable = true;
 

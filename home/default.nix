@@ -4,6 +4,7 @@
     ./direnv.nix
     ./easyeffects.nix
     ./eza.nix
+    ./firefox.nix
     ./ghostty.nix
     ./joplin.nix
     ./lf.nix
@@ -22,6 +23,7 @@
 
   easyeffects.enable = lib.mkDefault true;
   eza.enable = lib.mkDefault true;
+  firefox.enable = lib.mkDefault true;
   thunderbird.enable = lib.mkDefault true;
 
   # Home Manager needs a bit of information about you and the paths it should
