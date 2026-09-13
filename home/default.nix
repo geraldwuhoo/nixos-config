@@ -6,6 +6,7 @@
     ./eza.nix
     ./firefox.nix
     ./ghostty.nix
+    ./git.nix
     ./joplin.nix
     ./lf.nix
     ./mpv.nix
