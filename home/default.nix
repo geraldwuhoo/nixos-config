@@ -13,6 +13,7 @@
     ./plasma.nix
     ./rofi.nix
     ./rsync.nix
+    ./ssh.nix
     ./thunderbird.nix
     ./tmux.nix
     ./unclutter.nix
