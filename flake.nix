@@ -110,7 +110,10 @@
                   backupFileExtension = "bak";
                   extraSpecialArgs = { inherit inputs; };
 
-                  sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+                  sharedModules = [
+                    plasma-manager.homeModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
+                  ];
                   users.jerry = import ./home;
                 };
               }

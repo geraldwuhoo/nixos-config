@@ -1,4 +1,4 @@
-{ osConfig, pkgs, lib, ... }:
+{ config, osConfig, pkgs, lib, ... }:
 {
   imports = [
     ./direnv.nix
@@ -11,6 +11,7 @@
     ./joplin.nix
     ./lf.nix
     ./mpv.nix
+    ./ntfy.nix
     ./plasma.nix
     ./rofi.nix
     ./rsync.nix
@@ -50,7 +51,6 @@
         hyperfine
         jellyfin-mpv-shim
         kopia
-        ntfy-sh
         hydrus
       ]
       ++ (with unstable; [
@@ -80,6 +80,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  sops = {
+    defaultSopsFile = ../secrets/secrets.sops.yaml;
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+  };
 
   services.syncthing = {
     enable = true;
