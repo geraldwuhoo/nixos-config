@@ -8,6 +8,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg-agent.nix
+    ./hetzner-tunnel.nix
     ./joplin.nix
     ./lf.nix
     ./mpv.nix
