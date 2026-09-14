@@ -26,6 +26,8 @@
   tor.enable = true;
   virtual.enable = true;
 
+  lanInterface = "enp9s0";
+
   # Configure Clevis
   clevis = {
     enable = true;

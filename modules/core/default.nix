@@ -1,8 +1,10 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   imports = [
     # Core
     ./boot.nix
+    ./hardening.nix
+    ./lan.nix
     ./user.nix
 
     # System
@@ -38,6 +40,10 @@
     "flakes"
   ];
   nix.settings.auto-optimise-store = true;
+  nix.settings.extra-substituters = [ "https://cuda-maintainers.cachix.org" ];
+  nix.settings.extra-trusted-public-keys = [
+    "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+  ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10"
@@ -69,10 +75,12 @@
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22000 ];
-    allowedUDPPorts = [
-      22000
-      21027
-    ];
+    interfaces.${config.lanInterface} = {
+      allowedTCPPorts = [ 22000 ];
+      allowedUDPPorts = [
+        22000
+        21027
+      ];
+    };
   };
 }

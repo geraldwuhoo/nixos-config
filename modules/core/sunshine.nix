@@ -10,10 +10,26 @@
   };
 
   config = lib.mkIf config.sunshine.enable {
+    # Upstream openFirewall ports (base 47989), scoped to the LAN
+    networking.firewall.interfaces.${config.lanInterface} = {
+      allowedTCPPorts = [
+        47984
+        47989
+        47990
+        48010
+      ];
+      allowedUDPPorts = [
+        47998
+        47999
+        48000
+        48002
+        48010
+      ];
+    };
+
     services.sunshine = {
       enable = true;
       package = pkgs.sunshine.override { cudaSupport = config.nvidia.enable; };
-      openFirewall = true;
       capSysAdmin = true;
 
       settings = {
