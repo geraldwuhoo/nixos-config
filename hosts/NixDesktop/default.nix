@@ -63,6 +63,13 @@
   boot.loader.grub.configurationLimit = 20;
   boot.initrd.compressor = "${lib.getBin pkgs.zstd}/bin/zstd";
 
+  # Zen-like latency on the LTS kernel, which ZFS tracks
+  boot.kernelParams = [ "preempt=full" ];
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+  };
+
   stylix.image = ./wallpaper.jpg;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
