@@ -5,6 +5,7 @@
     ./boot.nix
     ./hardening.nix
     ./lan.nix
+    ./memory.nix
     ./user.nix
 
     # System
