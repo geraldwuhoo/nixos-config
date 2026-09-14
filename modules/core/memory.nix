@@ -12,6 +12,13 @@
     "vm.page-cluster" = 0;
   };
 
+  systemd.oomd = {
+    enableRootSlice = true;
+    enableUserSlices = true;
+  };
+  # The enable* options only kill on pressure; also kill once zram is 90% full
+  systemd.slices."-".sliceConfig.ManagedOOMSwap = "kill";
+
   nix.settings = {
     max-jobs = 4;
     cores = 4;
