@@ -119,6 +119,7 @@
             "flameshot"
             "Flameshot"
           ];
+          "screenGapBetween" = 6;
           "screenGapBottom" = 6;
           "screenGapLeft" = 6;
           "screenGapRight" = 6;
@@ -128,11 +129,15 @@
         Compositing = {
           "Enabled".value = true;
           "LatencyPolicy".value = "Low";
-          "MaxFPS".value = 144;
+          "MaxFPS".value = 175;
           "OpenGLIsUnsafe".value = false;
-          "RefreshRate".value = 144;
+          "RefreshRate".value = 175;
           "WindowsBlockCompositing".value = false;
           "XRenderSmoothScale".value = true;
+        };
+        NightColor = {
+          "Active".value = true;
+          "NightTemperature".value = 2800;
         };
         "org.kde.kdecoration2" = {
           "BorderSize".value = "Tiny";
