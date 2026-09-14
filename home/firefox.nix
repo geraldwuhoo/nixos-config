@@ -53,6 +53,9 @@
 
             # Enable service workers
             "dom.serviceWorkers.enabled" = true;
+
+            # Fullscreen video stays inside the window
+            "full-screen-api.ignore-widgets" = true;
           };
         };
       };
