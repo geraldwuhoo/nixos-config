@@ -10,6 +10,11 @@
     # Swapping to zram is cheaper than evicting file-backed pages
     "vm.swappiness" = 180;
     "vm.page-cluster" = 0;
+
+    # Reboot on real lockups so systemd-pstore keeps the log
+    "kernel.softlockup_panic" = 1;
+    "kernel.hardlockup_panic" = 1;
+    "kernel.panic" = 10;
   };
 
   systemd.oomd = {
