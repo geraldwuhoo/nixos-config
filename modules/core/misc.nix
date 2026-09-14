@@ -93,7 +93,6 @@
       czkawka-full
       exiftool
       ffmpeg-full
-      flameshot
       imagemagick
       jpegoptim
       libwebp
@@ -151,6 +150,9 @@
       gallery-dl
       planify
       yt-dlp
+
+      # 13.x misplaces capture overlay when no screen is at x=0,y=0
+      flameshot
 
       # Kubernetes tooling
       cilium-cli
