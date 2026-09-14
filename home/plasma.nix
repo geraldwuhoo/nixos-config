@@ -101,6 +101,24 @@
         Script-krohnkite = {
           "directionalKeyDwm".value = true;
           "directionalKeyFocus".value = false;
+          # Replaces krohnkite's default list, so the defaults are repeated
+          "ignoreClass".value = builtins.concatStringsSep "," [
+            "krunner"
+            "yakuake"
+            "spectacle"
+            "kded5"
+            "xwaylandvideobridge"
+            "plasmashell"
+            "ksplashqml"
+            "org.kde.plasmashell"
+            "org.kde.polkit-kde-authentication-agent-1"
+            "org.kde.kruler"
+            "kruler"
+            "kwin_wayland"
+            "ksmserver-logout-greeter"
+            "flameshot"
+            "Flameshot"
+          ];
           "screenGapBottom" = 6;
           "screenGapLeft" = 6;
           "screenGapRight" = 6;
