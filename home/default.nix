@@ -12,6 +12,7 @@
     ./lf.nix
     ./mpv.nix
     ./ntfy.nix
+    ./pim.nix
     ./plasma.nix
     ./rofi.nix
     ./rsync.nix
