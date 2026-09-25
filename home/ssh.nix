@@ -4,6 +4,8 @@
     enable = true;
     enableDefaultConfig = false;
     settings = {
+      # Remote hosts lack xterm-ghostty terminfo
+      "*".SetEnv.TERM = "xterm-256color";
       "aur.archlinux.org" = {
         IdentityFile = "~/.ssh/aur";
         User = "aur";
