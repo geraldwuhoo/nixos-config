@@ -7,6 +7,7 @@
     enable = true;
     # ly.enable = true;
     sddm.enable = true;
+    defaultSession = "plasmax11";
   };
 
   services.desktopManager.plasma6.enable = true;
