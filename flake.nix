@@ -59,9 +59,6 @@
               # Clanker
               "claude-code"
             ];
-          config.permittedInsecurePackages = [
-            "electron-31.7.7"
-          ];
         };
       };
       overlay-hydrus = final: prev: {
