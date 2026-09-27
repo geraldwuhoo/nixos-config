@@ -123,6 +123,8 @@
     settings.k9s.ui.skin = "nord";
   };
 
+  home.file.".kube/k3d.yaml".source = ./files/k3d.yaml;
+
   programs.obs-studio = {
     enable = true;
     package = pkgs.obs-studio.override { cudaSupport = osConfig.nvidia.enable; };

@@ -1,0 +1,55 @@
+---
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+kubeAPI:
+  host: localhost
+  hostIP: "127.0.0.1"
+  hostPort: "6445"
+servers: 1
+agents: 3
+image: docker.io/rancher/k3s:v1.35.8-k3s1
+ports:
+  - port: 8888:80
+    nodeFilters:
+      - loadbalancer
+registries:
+  config: |
+    mirrors:
+      "docker.io":
+        endpoint:
+          - https://hub.wuhoo.xyz
+      "ghcr.io":
+        endpoint:
+          - https://ghcr.wuhoo.xyz
+      "gcr.io":
+        endpoint:
+          - https://gcr.wuhoo.xyz
+      "k8s.gcr.io":
+        endpoint:
+          - https://k8sgcr.wuhoo.xyz
+      "quay.io":
+        endpoint:
+          - https://quay.wuhoo.xyz
+      "registry.gitlab.com":
+        endpoint:
+          - https://rgitlab.wuhoo.xyz
+options:
+  k3s:
+    extraArgs:
+      # rootless podman: kubelet can't open /dev/kmsg without this
+      - arg: "--kubelet-arg=feature-gates=KubeletInUserNamespace=true"
+        nodeFilters:
+          - "server:*"
+          - "agent:*"
+      - arg: "--kube-proxy-arg=conntrack-max-per-core=0"
+        nodeFilters:
+          - "server:*"
+          - "agent:*"
+      - arg: "--data-dir="
+        nodeFilters:
+          - "server:*"
+      - arg: "--disable=traefik"
+        nodeFilters:
+          - "server:*"
+  kubeconfig:
+    updateDefaultKubeconfig: false
