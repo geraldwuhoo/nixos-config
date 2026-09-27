@@ -65,7 +65,6 @@
       tor-browser
       (ungoogled-chromium.override {
         commandLineArgs = [
-          "--enable-features=VaapiVideoDecodeLinuxGL"
           "--ignore-gpu-blocklist"
           "--enable-zero-copy"
           "--change-stack-guard-on-fork=enable"
@@ -164,6 +163,7 @@
       kubectl-ktop
       kubectl-neat
       kubectl-tree
+      kubectx
       kubernetes-helm
       kubie
       kustomize
