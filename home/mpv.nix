@@ -19,5 +19,7 @@
       "Alt+-" = "add video-zoom -0.43";
       "Alt+=" = "add video-zoom 0.43";
     };
+    # match yt-dlp's default "Title [id].ext" filenames
+    scriptOpts.sponsorblock.local_pattern = "%[([%w-_]+)%]%.%w+$";
   };
 }
