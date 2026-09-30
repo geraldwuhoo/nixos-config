@@ -5,6 +5,7 @@
     ./easyeffects.nix
     ./eza.nix
     ./firefox.nix
+    ./flameshot.nix
     ./ghostty.nix
     ./git.nix
     ./gpg-agent.nix
