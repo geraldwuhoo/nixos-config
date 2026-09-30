@@ -3,6 +3,7 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+    attributes = [ "*.sops.yaml diff=sopsdiffer" ];
     signing.key = "gerald@geraldwu.com";
     settings = {
       user = {
@@ -17,6 +18,7 @@
       url."git@github.com:".insteadOf = "https://github.com/";
       # gitFull is cached; git with withLibsecret is not
       credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
+      diff.sopsdiffer.textconv = "${pkgs.sops}/bin/sops -d";
     };
   };
 }
