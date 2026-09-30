@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 {
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.kde.enable = false;
@@ -154,4 +154,14 @@
     enable = true;
     indicator = true;
   };
+
+  # the share plugin's download dir is per device, so set it for every paired one
+  home.activation.kdeconnectIncomingPath = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    for dev in ${config.xdg.configHome}/kdeconnect/*/; do
+      [ -d "$dev" ] || continue
+      run mkdir -p "$dev/kdeconnect_share"
+      run ${pkgs.kdePackages.kconfig}/bin/kwriteconfig6 --file "$dev/kdeconnect_share/config" \
+        --group General --key incoming_path /scratch
+    done
+  '';
 }
