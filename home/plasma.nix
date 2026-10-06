@@ -119,6 +119,7 @@
             "flameshot"
             "Flameshot"
           ];
+          "noTileBorder".value = true;
           "screenGapBetween" = 6;
           "screenGapBottom" = 6;
           "screenGapLeft" = 6;
@@ -143,6 +144,14 @@
           "BorderSize".value = "Tiny";
           "BorderSizeAuto".value = false;
         };
+      };
+      breezerc."Windeco Exception 0" = {
+        "BorderSize".value = 0;
+        "Enabled".value = true;
+        "ExceptionPattern".value = ".*";
+        "ExceptionType".value = 0;
+        "HideTitleBar".value = true;
+        "Mask".value = 16;
       };
       kded5rc = {
         "Module-gtkconfig"."autoload" = false;

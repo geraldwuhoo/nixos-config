@@ -70,6 +70,8 @@
         "editor.minimap.enabled" = false;
         "editor.wordWrap" = "on";
         "window.menuBarVisibility" = "toggle";
+        "window.titleBarStyle" = "native";
+        "window.customTitleBarVisibility" = "never";
         "window.zoomLevel" = -1.5;
 
         # Clanker
