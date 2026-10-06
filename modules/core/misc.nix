@@ -131,6 +131,7 @@
       lm_sensors
       mbuffer
       opensc
+      pv
       pwgen
       rclone
       rhash
