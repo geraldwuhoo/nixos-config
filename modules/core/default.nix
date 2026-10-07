@@ -64,6 +64,9 @@
       "steam-original"
       "steam-run"
 
+      # zsh
+      "zsh-abbr"
+
       # Vim
       "vim-trailing-whitespace"
       "vim-windowswap"

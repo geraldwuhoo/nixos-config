@@ -25,6 +25,7 @@
     ./vim.nix
     ./vscode.nix
     ./zathura.nix
+    ./zsh-abbr.nix
     ./zsh.nix
   ];
 

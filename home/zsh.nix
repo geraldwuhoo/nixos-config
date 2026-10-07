@@ -153,6 +153,13 @@ in
       (lib.mkOrder 550 ''
         # Fix time format bc the bash format is 10/10 better
         export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+
+        # zsh-abbr
+        ABBR_SET_EXPANSION_CURSOR=1
+        # default marker is %, which collides with date formats
+        ABBR_EXPANSION_CURSOR_MARKER=__CURSOR__
+        # also expand regular abbreviations after ; & |
+        ABBR_EXPERIMENTAL_COMMAND_POSITION_REGULAR_ABBREVIATIONS=2
       '')
 
       # Default order (1000): after plugins are sourced, before syntax highlighting.
@@ -183,7 +190,6 @@ in
 
         source ${zshFiles}/bindkey.zsh
         source ${zshFiles}/aliases.zsh
-        source ${zshFiles}/abbreviations.zsh
       ''
     ];
   };
