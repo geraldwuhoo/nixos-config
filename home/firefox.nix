@@ -49,7 +49,7 @@
             "security.tls.enable_kyber" = true;
 
             # Use self-hosted syncserver
-            "identity.sync.tokenserver.uri" = "https://firefoxsync.wuhoo.xyz/token/1.0/sync/1.5";
+            "identity.sync.tokenserver.uri" = "https://ffsync.wuhoo.xyz/1.0/sync/1.5";
 
             # Enable service workers
             "dom.serviceWorkers.enabled" = true;
