@@ -55,7 +55,6 @@
         hyperfine
         jellyfin-mpv-shim
         kopia
-        hydrus
       ]
       ++ (with unstable; [
         jellyfin-tui

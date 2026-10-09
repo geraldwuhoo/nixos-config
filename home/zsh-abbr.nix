@@ -24,8 +24,6 @@
       tma = "tmux a";
 
       # zfs stuff
-      hymnt = "sudo zfs load-key zroot/data/hydrus && sudo zfs mount zroot/data/hydrus";
-      hyumnt = "sudo zfs umount zroot/data/hydrus && sudo zfs unload-key zroot/data/hydrus";
       zback = "zfs send -Rwv \"\$(zfs list -t snapshot zroot/data/home | awk 'END{print \$1}')\" > zroot_data_home_\$(date -u +%Y-%m-%dT%H:%M:%S%Z)";
 
       # topgrade
