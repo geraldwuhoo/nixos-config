@@ -1,6 +1,7 @@
 { config, osConfig, pkgs, lib, ... }:
 {
   imports = [
+    ./claude-code.nix
     ./direnv.nix
     ./easyeffects.nix
     ./eza.nix
