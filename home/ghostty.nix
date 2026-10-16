@@ -17,6 +17,7 @@ in
       confirm-close-surface = false;
       resize-overlay = "never";
       link-previews = false;
+      scrollbar = "never";
 
       # KWin draws the titlebar instead of ghostty drawing a GTK headerbar.
       window-decoration = "server";
