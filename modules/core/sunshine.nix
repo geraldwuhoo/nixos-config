@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  kscreen-doctor = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor";
+in
 {
   options = {
     sunshine.enable = lib.mkEnableOption "enables sunshine";
@@ -66,8 +69,8 @@
             name = "Low Res Desktop";
             prep-cmd = [
               {
-                do = "${pkgs.xrandr} --output HDMI-1 --mode 1920x1080";
-                undo = "${pkgs.xrandr} --output HDMI-1 --mode 1920x1200";
+                do = "${kscreen-doctor} output.HDMI-A-1.mode.1920x1080@60";
+                undo = "${kscreen-doctor} output.HDMI-A-1.mode.2560x1440@60";
               }
             ];
           }

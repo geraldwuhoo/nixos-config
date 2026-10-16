@@ -56,6 +56,7 @@
       yq
 
       # X11 utilities
+      wl-clipboard
       xclip
       xdo
       xdotool

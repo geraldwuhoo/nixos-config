@@ -74,6 +74,15 @@
       };
     };
 
+    input.mice = [
+      {
+        name = "Primax Kensington Eagle Trackball";
+        vendorId = "047d";
+        productId = "2048";
+        acceleration = -0.75;
+      }
+    ];
+
     configFile = {
       "kglobalshortcutsrc" = {
         "ghostty-launch.desktop"."_k_friendly_name" = "ghostty +new-window";
@@ -92,9 +101,11 @@
           "Stiffness".value = 10;
           "WobblynessLevel".value = 1;
         };
+        Effect-hidecursor."InactivityDuration".value = 3;
         Plugins = {
           "krohnkiteEnabled".value = true;
           "blurEnabled".value = true;
+          "hidecursorEnabled".value = true;
           "magiclampEnabled".value = true;
           "wobblywindowsEnabled".value = true;
         };

@@ -22,7 +22,6 @@
     ./ssh.nix
     ./thunderbird.nix
     ./tmux.nix
-    ./unclutter.nix
     ./vim.nix
     ./vscode.nix
     ./zathura.nix

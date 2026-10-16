@@ -15,8 +15,8 @@
       rp = "systemctl --user restart plasma-plasmashell.service";
       ethmine = "tmuxinator start mine";
       fzfb = "fzf --preview 'bat --style=numbers --color=always --line-range=:500 {}'";
-      pwc = "pwgen --secure --num-passwords 1 __CURSOR__ | tr -d '[:space:]' | xclip -sel clip";
-      pws = "pwgen --secure --symbols --num-passwords 1 __CURSOR__ | tr -d '[:space:]' | xclip -sel clip";
+      pwc = "pwgen --secure --num-passwords 1 __CURSOR__ | tr -d '[:space:]' | wl-copy";
+      pws = "pwgen --secure --symbols --num-passwords 1 __CURSOR__ | tr -d '[:space:]' | wl-copy";
       ydl = "yt-dlp";
       ydl720 = "yt-dlp --format \"bestvideo[height<=?720][vcodec~='vp0?9']+bestaudio[acodec=opus]\"";
       ydl1080 = "yt-dlp --format \"bestvideo[height<=?1080][vcodec~='vp0?9']+bestaudio[acodec=opus]\"";

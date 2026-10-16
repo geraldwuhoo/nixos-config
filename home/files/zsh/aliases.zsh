@@ -27,13 +27,3 @@ flashsplit() {
 }
 alias flashgherkin="sudo avrdude -p atmega32u4 -P /dev/ttyACM0 -c avr109 -U flash:w:gherkin.hex;"
 alias flashplanck="sudo dfu-programmer atmega32u4 erase;sudo dfu-programmer atmega32u4 flash .build/planck_rev5_jerry.hex"
-settrackball() {
-	if [ -z $1 ];
-	then
-		speed=0.50000
-	else
-		speed=$1
-	fi
-	xinput --set-prop "Primax Kensington Eagle Trackball" "Coordinate Transformation Matrix" $speed, 0.000000, 0.000000, 0.000000, $speed, 0.000000, 0.000000, 0.000000, $speed
-	xinput --set-prop "Primax Kensington Eagle Trackball" "libinput Accel Speed" -0.75
-}

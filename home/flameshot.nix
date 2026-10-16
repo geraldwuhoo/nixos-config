@@ -14,8 +14,6 @@
       showStartupLaunchMessage = false;
       startupLaunch = false;
       useJpgForClipboard = true;
-      # the portal round-trips the whole 7440x3440 desktop through a PNG
-      useX11LegacyScreenshot = true;
     };
   };
 }

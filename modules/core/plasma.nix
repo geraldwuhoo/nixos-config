@@ -1,14 +1,18 @@
 { pkgs, ... }:
 {
-  imports = [ ./x11.nix ];
-
   # display-manager
   services.displayManager = {
     enable = true;
     # ly.enable = true;
-    sddm.enable = true;
-    defaultSession = "plasmax11";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    defaultSession = "plasma";
   };
+
+  # Electron/Chromium apps otherwise run blurry under XWayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.libsForQt5; [ ];
