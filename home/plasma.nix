@@ -120,12 +120,13 @@
             "Flameshot"
           ];
           "noTileBorder".value = true;
-          "screenGapBetween" = 6;
-          "screenGapBottom" = 6;
-          "screenGapLeft" = 6;
-          "screenGapRight" = 6;
-          "screenGapTop" = 6;
-          "tileLayoutGap".value = 6;
+          "soleWindowNoBorders".value = true;
+          "screenGapBetween" = 0;
+          "screenGapBottom" = 0;
+          "screenGapLeft" = 0;
+          "screenGapRight" = 0;
+          "screenGapTop" = 0;
+          "tileLayoutGap".value = 0;
         };
         Compositing = {
           "Enabled".value = true;
