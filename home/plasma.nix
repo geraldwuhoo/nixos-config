@@ -185,4 +185,17 @@
         --group General --key incoming_path /scratch
     done
   '';
+
+  # sourced by startplasma; DP-0 is the nvidia X driver's name, wayland calls it something else
+  # __GL_SYNC_TO_VBLANK on wayland overrides eglSwapInterval(0) and deadlocks firefox's first paint
+  xdg.configFile."plasma-workspace/env/kwin.sh".text = ''
+    if [ "$XDG_SESSION_TYPE" = x11 ]; then
+      export __GL_SYNC_TO_VBLANK=1
+      export __GL_SYNC_DISPLAY_DEVICE=DP-0
+      export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DP-0
+      export KWIN_X11_NO_SYNC_TO_VBLANK=1
+      export KWIN_X11_FORCE_SOFTWARE_VSYNC=1
+      export KWIN_X11_REFRESH_RATE=175000
+    fi
+  '';
 }
