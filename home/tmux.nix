@@ -17,7 +17,6 @@
     ];
 
     extraConfig = ''
-      # for sxhkd
       set -g set-titles on
       set -g set-titles-string "#T"
       setw -g automatic-rename

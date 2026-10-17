@@ -55,11 +55,8 @@
       yj
       yq
 
-      # X11 utilities
+      # Wayland utilities
       wl-clipboard
-      xclip
-      xdo
-      xdotool
 
       # Browsers
       brave
@@ -85,7 +82,6 @@
       libreoffice
       mangohud
       signal-desktop
-      sxhkd
       webcord
 
       # Media tools
