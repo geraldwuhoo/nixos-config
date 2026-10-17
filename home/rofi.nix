@@ -12,6 +12,11 @@
     };
   };
 
+  xdg.configFile."rofi-rbw.rc".text = ''
+    typer = ydotool
+    clipboarder = wl-copy
+  '';
+
   programs.rofi = {
     enable = true;
     plugins = with pkgs; [ rofi-calc ];

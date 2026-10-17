@@ -9,6 +9,7 @@
       "libvirtd"
       "kvm"
       "video"
+      "ydotool"
     ]
     ++ (if config.ipfs.enable then [ config.services.kubo.group ] else [ ]);
     shell = pkgs.zsh;

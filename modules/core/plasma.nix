@@ -14,6 +14,9 @@
   # Electron/Chromium apps otherwise run blurry under XWayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  # for rofi-rbw typing; wtype doesn't work on kwin
+  programs.ydotool.enable = true;
+
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.libsForQt5; [ ];
 
