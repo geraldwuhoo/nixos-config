@@ -36,6 +36,8 @@ in
       capSysAdmin = true;
 
       settings = {
+        # otherwise it probes the xdg portal on startup, prompting for remote control every login
+        capture = "kms";
         amd_rc = "auto";
         min_log_level = "2";
         resolutions = ''
