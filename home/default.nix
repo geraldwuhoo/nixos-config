@@ -10,6 +10,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg-agent.nix
+    ./grok-build.nix
     ./hetzner-tunnel.nix
     ./joplin.nix
     ./lf.nix

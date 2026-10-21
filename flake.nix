@@ -58,6 +58,7 @@
 
               # Clanker
               "claude-code"
+              "grok-build"
             ];
         };
       };
