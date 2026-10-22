@@ -8,7 +8,7 @@ in
   home.file.".grok/config.toml".source = tomlFormat.generate "grok-config.toml" {
     models = {
       default = "grok-4.7";
-      default_reasoning_effort = "medium";
+      default_reasoning_effort = "high";
     };
 
     ui = {
