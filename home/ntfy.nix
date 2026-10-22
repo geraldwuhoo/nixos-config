@@ -23,6 +23,7 @@
     "Downtime"
     "kured"
     "Media"
+    "grokbot"
   ];
 
   systemd.user.services.ntfy-client = {
