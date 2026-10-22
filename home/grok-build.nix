@@ -42,6 +42,9 @@ in
     memory.enabled = false;
     relay.enabled = false;
 
+    # Store symlink, so the in-app buttons cannot persist this dismissal
+    privacy.privacy_banner_acked = "2026-10-21T00:00:00Z";
+
     # 0 disables cleanup rather than keeping nothing
     storage.cleanup_ttl_days = 1;
   };
