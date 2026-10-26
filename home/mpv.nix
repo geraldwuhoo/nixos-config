@@ -8,6 +8,9 @@
       hwdec = if osConfig.nvidia.enable then "nvdec" else "auto";
       hwdec-codecs = "all";
       vo = "gpu-next";
+      # Krohnkite's size is not an xdg tiled state, so the default rescales
+      # the picture to the window width. A wide tile then draws past the frame.
+      keepaspect-window = "no";
       hr-seek-framedrop = "no";
       no-resume-playback = "";
       ytdl-format = "bestvideo[height<=?1440][fps<=?60]+bestaudio/best";

@@ -22,7 +22,12 @@
 
   # Relevant plugins and themes
   environment.systemPackages = with pkgs; [
-    kdePackages.krohnkite
+    # Wayland ignores a frameGeometry write while the window is on another
+    # desktop, so a terminal sent there keeps its old size. The patch
+    # arranges again once that desktop is showing, and retries a rejected size.
+    (kdePackages.krohnkite.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [ ./krohnkite-wayland-size.patch ];
+    }))
     nordic
   ];
 

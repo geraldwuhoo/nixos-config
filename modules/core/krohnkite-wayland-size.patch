@@ -1,0 +1,35 @@
+--- a/src/engine/control.ts
++++ b/src/engine/control.ts
+@@ -38,6 +38,10 @@
+
+   public onSurfaceUpdate(ctx: IDriverContext): void {
+     this.engine.arrange(ctx);
++    // A frame move onto a desktop that is not showing is ignored.
++    ctx.setTimeout(() => {
++      this.engine.arrange(ctx);
++    }, 100);
+   }
+   public onCurrentActivityChanged(ctx: IDriverContext): void {
+     this.engine.arrange(ctx);
+--- a/src/engine/engine.ts
++++ b/src/engine/engine.ts
+@@ -328,10 +328,15 @@
+    * move/resize such windows back to where/how they should be.
+    */
+   public enforceSize(ctx: IDriverContext, window: WindowClass) {
+-    if (window.tiled && !window.actualGeometry.equals(window.geometry))
+-      ctx.setTimeout(() => {
+-        if (window.tiled) window.commit();
+-      }, 10);
++    if (window.tiled && !window.actualGeometry.equals(window.geometry)) {
++      // The client can reject the first commit. Retry until one sticks.
++      [10, 100, 300].forEach((delay) => {
++        ctx.setTimeout(() => {
++          if (window.tiled && !window.actualGeometry.equals(window.geometry))
++            window.commit();
++        }, delay);
++      });
++    }
+   }
+
+   /**

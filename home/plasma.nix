@@ -1,4 +1,15 @@
 { config, lib, pkgs, ... }:
+let
+  # plasma-manager stores each rule property as { value, apply }.
+  force = value: {
+    inherit value;
+    apply = "force";
+  };
+  initially = value: {
+    inherit value;
+    apply = "initially";
+  };
+in
 {
   # Stylix auto-theming is ass compared to the Nordic package
   stylix.targets.kde.enable = false;
@@ -80,6 +91,28 @@
         vendorId = "047d";
         productId = "2048";
         acceleration = -0.75;
+      }
+    ];
+
+    # Maximized windows otherwise keep a titlebar's worth of empty frame on Wayland.
+    kwin.borderlessMaximizedWindows = true;
+    # Per-desktop tile padding below still has to be cleared; this is the global key.
+    kwin.tiling.padding = 0;
+
+    # Wayland clients keep their size hints, and Krohnkite clips to them before
+    # asking KWin to place the window. A max size under the tile leaves a gap.
+    window-rules = [
+      {
+        description = "Let Krohnkite fill the tile";
+        match.window-types = [ "normal" ];
+        apply = {
+          ignoregeometry = force true;
+          minsize = force "0,0";
+          maxsize = force "32767,32767";
+          strictgeometry = force false;
+          maximizehoriz = initially false;
+          maximizevert = initially false;
+        };
       }
     ];
 
@@ -184,6 +217,19 @@
       run ${pkgs.kdePackages.kconfig}/bin/kwriteconfig6 --file "$dev/kdeconnect_share/config" \
         --group General --key incoming_path /scratch
     done
+  '';
+
+  # KWin stores custom-tile padding per desktop and output. The default it
+  # wrote is 4, which insets anything snapped into a zone. Krohnkite's own gaps are 0.
+  home.activation.kwinTilePadding = lib.hm.dag.entryAfter [ "configure-plasma" ] ''
+    cfg="${config.xdg.configHome}/kwinrc"
+    if [ -f "$cfg" ]; then
+      run ${pkgs.gnused}/bin/sed -i 's/^padding=.*/padding=0/' "$cfg"
+    fi
+    if [ -n "''${DBUS_SESSION_BUS_ADDRESS:-}" ]; then
+      run ${pkgs.dbus}/bin/dbus-send --session --dest=org.kde.KWin --type=method_call \
+        /KWin org.kde.KWin.reconfigure || true
+    fi
   '';
 
   # sourced by startplasma; DP-0 is the nvidia X driver's name, wayland calls it something else
