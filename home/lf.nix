@@ -1,24 +1,45 @@
 { pkgs, ... }:
 let
-  # ueberzugpp sizes both axes from max(horizontal, vertical) padding, which
-  # rounds the cell width down in short windows and shifts previews left.
-  ueberzugpp = pkgs.ueberzugpp.overrideAttrs (old: {
+  # home/files/ctpv-place.sh fits the image, then writes one icat sequence.
+  ctpvPlace = pkgs.writeShellScriptBin "ctpv-place" ''
+    export PATH="${
+      pkgs.lib.makeBinPath [
+        pkgs.imagemagick
+        pkgs.coreutils
+        pkgs.findutils
+        pkgs.python3Minimal
+        pkgs.kitty
+      ]
+    }:$PATH"
+    ${builtins.readFile ./files/ctpv-place.sh}
+  '';
+
+  # ctpv records $! in the kitty branch and waits, so the patch backgrounds
+  # the placer. Python ueberzug crashes; ueberzugpp ships the same command.
+  ctpv = (pkgs.ctpv.override { ueberzug = pkgs.ueberzugpp; }).overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./files/ctpv-ghostty.patch ];
     postPatch = (old.postPatch or "") + ''
-      substituteInPlace src/terminal.cpp \
-        --replace-fail 'static_cast<uint16_t>(std::max(padding_horiz, padding_vert))' 'static_cast<uint16_t>(padding_horiz)' \
-        --replace-fail 'padding_vertical = padding_horizontal;' 'padding_vertical = static_cast<uint16_t>(padding_vert);'
+      substituteInPlace sh/helpers.sh \
+        --replace-fail '@ctpvPlace@' '${ctpvPlace}/bin/ctpv-place'
     '';
   });
 
-  # Python ueberzug crashes on startup; ueberzugpp ships a drop-in `ueberzug`.
-  ctpv = pkgs.ctpv.override { ueberzug = ueberzugpp; };
+  # Ghostty's TERM is xterm-ghostty. KITTY_PID only has to be non-empty.
+  ctpvEnv = ''
+    export KITTY_PID="''${KITTY_PID:-$PPID}"
+    export PATH="${pkgs.kitty}/bin:$PATH"
+  '';
 
-  # lf r41 passes a 6th argument, which ctpv reads as the server id.
+  # lf r41 passes the preview mode as a 6th argument. ctpv reads it as the server id.
   ctpvPreviewer = pkgs.writeShellScript "ctpv-previewer" ''
-    if [ "$#" -gt 5 ]; then
-      exec ${ctpv}/bin/ctpv "$1" "$2" "$3" "$4" "$5"
-    fi
+    ${ctpvEnv}
+    [ "$#" -gt 5 ] && set -- "$1" "$2" "$3" "$4" "$5"
     exec ${ctpv}/bin/ctpv "$@"
+  '';
+
+  ctpvClear = pkgs.writeShellScript "ctpv-clear" ''
+    ${ctpvEnv}
+    exec ${ctpv}/bin/ctpvclear "$@"
   '';
 in
 {
@@ -183,11 +204,10 @@ in
       "." = "set hidden!";
     };
     extraConfig = ''
-      set cleaner ${ctpv}/bin/ctpvclear
+      set cleaner ${ctpvClear}
       &${ctpv}/bin/ctpv -s $id
-      # Clear the image at once; ending the server here instead would race lf's
-      # cleaner and leave a stray /tmp/ctpvfifo.* behind. ctpvquit ends it after.
-      cmd on-quit %${ctpv}/bin/ctpv -c $id
+      # Clear now. Quitting the server here races the cleaner and leaks a fifo.
+      cmd on-quit %${ctpvClear} $id; rm -rf /tmp/ctpv-fit.$id
       &${ctpv}/bin/ctpvquit $id
     '';
   };

@@ -1,0 +1,12 @@
+--- a/sh/helpers.sh
++++ b/sh/helpers.sh
+@@ -101,8 +101,7 @@
+ 			return 1
+ 			;;
+ 		"$image_method_kitty")
+-			kitty +kitten icat --silent --stdin no --transfer-mode file \
+-				--place "${w}x${h}@${x}x${y}" "$1" < /dev/null > /dev/tty
++			@ctpvPlace@ "$1" "$w" "$h" "$x" "$y" &
+ 			printf '%d\n' "$!" > "$(kitty_icat_pid)"
+ 			wait
+ 			return 1
