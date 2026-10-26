@@ -24,6 +24,7 @@
     "kured"
     "Media"
     "grokbot"
+    "alerts"
   ];
 
   systemd.user.services.ntfy-client = {
