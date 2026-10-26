@@ -13,6 +13,7 @@ in
 
     ui = {
       theme = "terminal";
+      compact_mode = true;
       # Auto-review: routine tool calls pass a safety check; the rest still prompt
       permission_mode = "auto";
       # Ghost text is another model call with the prompt
