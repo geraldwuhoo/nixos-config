@@ -24,6 +24,9 @@ let
     name = "ghostty-gtk-bounds";
     paths = [ pkgs.ghostty ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
+    meta = pkgs.ghostty.meta // {
+      mainProgram = "ghostty";
+    };
     postBuild = ''
       wrapProgram $out/bin/ghostty \
         --prefix LD_PRELOAD : ${gtkBoundsHook}/lib/libgtk-bounds.so

@@ -35,6 +35,7 @@
       global = {
         fsid = "9e4c7478-c21a-45af-9b37-f82ba4cea186";
         monHost = "10.40.0.30, 10.40.0.31, 10.40.0.32";
+        monInitialMembers = "";
       };
       client = {
         enable = true;
