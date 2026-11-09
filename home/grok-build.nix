@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   tomlFormat = pkgs.formats.toml { };
 
@@ -60,7 +65,12 @@ let
   phrase = builtins.map (body: "Bash(*${body})");
 in
 {
-  home.packages = [ pkgs.unstable.grok-build ];
+  sops.secrets.grafana-mcp-token = { };
+
+  home.packages = [
+    pkgs.unstable.grok-build
+    pkgs.unstable.mcp-grafana
+  ];
 
   home.file.".grok/config.toml".source = tomlFormat.generate "grok-config.toml" {
     models = {
@@ -485,6 +495,15 @@ in
 
     # 0 disables cleanup rather than keeping nothing
     storage.cleanup_ttl_days = 1;
+
+    mcp_servers.grafana = {
+      command = lib.getExe pkgs.unstable.mcp-grafana;
+      args = [ "--disable-write" ];
+      env = {
+        GRAFANA_URL = "https://grafana.wuhoo.xyz";
+        GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE = config.sops.secrets.grafana-mcp-token.path;
+      };
+    };
   };
 
   home.sessionVariables = {
