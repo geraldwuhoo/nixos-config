@@ -129,6 +129,8 @@ in
 
       " Set colorscheme
       colorscheme nord
+      " termguicolors is auto-enabled; nord's guibg would cover the terminal's opacity
+      hi Normal guibg=NONE ctermbg=NONE
 
       set sts=4
 
