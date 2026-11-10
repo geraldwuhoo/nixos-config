@@ -10,6 +10,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg-agent.nix
+    ./gtk-bounds.nix
     ./grafana-mcp.nix
     ./grok-build.nix
     ./hetzner-tunnel.nix
