@@ -41,6 +41,9 @@
             # Allow WebAssembly
             "javascript.options.wasm" = true; # 5506
 
+            # Allow pages to write the clipboard. Stuck false from an older arkenfox.
+            "dom.allow_cut_copy" = true;
+
             # Move cache to memory
             "browser.cache.disk.enable" = false;
             "browser.cache.memory.enable" = true;
