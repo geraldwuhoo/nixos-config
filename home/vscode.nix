@@ -47,6 +47,9 @@
         # Theming
         arcticicestudio.nord-visual-studio-code
         pkief.material-icon-theme
+
+        # Clanker
+        anthropic.claude-code
       ];
 
       userSettings = {
@@ -70,6 +73,9 @@
         "window.titleBarStyle" = "native";
         "window.customTitleBarVisibility" = "never";
         "window.zoomLevel" = -1.5;
+
+        # Clanker
+        "claudeCode.useTerminal" = true;
 
         # Why does this even exist
         "terminal.integrated.stickyScroll.enabled" = false;

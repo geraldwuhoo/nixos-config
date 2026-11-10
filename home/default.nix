@@ -1,6 +1,7 @@
 { config, osConfig, pkgs, lib, ... }:
 {
   imports = [
+    ./claude-code.nix
     ./direnv.nix
     ./easyeffects.nix
     ./eza.nix
@@ -9,6 +10,7 @@
     ./ghostty.nix
     ./git.nix
     ./gpg-agent.nix
+    ./grafana-mcp.nix
     ./grok-build.nix
     ./hetzner-tunnel.nix
     ./joplin.nix

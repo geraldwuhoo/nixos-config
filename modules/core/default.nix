@@ -70,6 +70,9 @@
       # Vim
       "vim-trailing-whitespace"
       "vim-windowswap"
+
+      # Clanker
+      "claude-code"
     ]
     # CUDA packages
     || lib.hasPrefix "cuda" (lib.getName pkg)
