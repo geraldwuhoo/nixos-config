@@ -9,8 +9,6 @@
     tmuxinator.enable = true;
 
     plugins = with pkgs.tmuxPlugins; [
-      nord
-      prefix-highlight
       resurrect
       tmux-fzf
       vim-tmux-navigator

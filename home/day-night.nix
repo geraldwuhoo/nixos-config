@@ -119,9 +119,43 @@ let
   # points it at the dark or light set.
   current = "${config.xdg.stateHome}/day-night/current";
 
+  k9sNord = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/derailed/k9s/master/skins/nord.yaml";
+    sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
+  };
+  k9sNordDay = pkgs.writeText "k9s-nord-day.yaml" (
+    builtins.replaceStrings
+      [ "#DADEE8" "#30343F" "#383D4A" "#D9DEE8" "#8891A7" "#88C0D0" "#A3BE8C" "#D08770" "#81A1C1" "#B48EAD" "#BF616A" "#EBCB8B" ]
+      [ "#2E3440" "#E5E9F0" "#C2CAD8" "#4C566A" "#616E88" "#2C687A" "#4F6939" "#9D492E" "#44648B" "#815379" "#A73E48" "#7F5B11" ]
+      (builtins.readFile k9sNord)
+  );
+
+  nordTmux = "${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/src";
+  prefixHighlight = "${pkgs.tmuxPlugins.prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux";
+  tmuxNord = pkgs.runCommand "tmux-nord.conf" { } ''
+    cat ${nordTmux}/nord.conf ${nordTmux}/nord-status-content.conf |
+      sed -e 's/''${NORD_TMUX_STATUS_DATE_FORMAT}/%Y-%m-%d/' \
+          -e 's/''${NORD_TMUX_STATUS_TIME_FORMAT}/%I:%M %p/' > $out
+  '';
+  tmuxNordDay = pkgs.runCommand "tmux-nord-day.conf" { } ''
+    sed -e 's/\bbrightblack\b/@7@/g' -e 's/\bblack\b/brightwhite/g' \
+        -e 's/\bwhite\b/black/g' -e 's/@7@/white/g' ${tmuxNord} > $out
+    echo 'set -g pane-border-style bg=default,fg=brightblack' >> $out
+  '';
+  # prefix-highlight fills #{prefix_highlight} into status-right once, so rerun it
+  # after status-right is set.
+  tmuxConf = nord: pkgs.writeText "tmux-colours.conf" ''
+    source-file ${nord}
+    run-shell ${prefixHighlight}
+  '';
+
   schemeFiles = lib.mapAttrs (
     mode: p:
     pkgs.linkFarm "day-night-${mode}" {
+      "mode" = pkgs.writeText "mode" mode;
+      "fzfrc" = pkgs.writeText "fzfrc-${mode}" "--color=${mode}\n";
+      "k9s.yaml" = if mode == "light" then k9sNordDay else k9sNord;
+      "tmux.conf" = tmuxConf (if mode == "light" then tmuxNordDay else tmuxNord);
       "rofi.rasi" = pkgs.writeText "rofi-${mode}.rasi" ''
         * {
         ${lib.concatStrings (lib.mapAttrsToList (n: v: "  ${n}: ${v};\n") p.rofi)}}
@@ -140,14 +174,23 @@ let
         /org/freedesktop/portal/desktop org.freedesktop.portal.Settings \
         ReadOne ss org.freedesktop.appearance color-scheme) || scheme=1
       if [ "''${scheme##* }" = 1 ]; then
-        theme=Nordic pref=prefer-dark files=${schemeFiles.dark}
+        theme=Nordic pref=prefer-dark claude=dark-ansi files=${schemeFiles.dark}
       else
-        theme=Nordic-Polar pref=default files=${schemeFiles.light}
+        theme=Nordic-Polar pref=default claude=light-ansi files=${schemeFiles.light}
       fi
       mkdir -p ${dirOf current}
       ln -sfn "$files" ${current}
       ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'$theme'" || true
       ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'$pref'" || true
+      ${config.programs.tmux.package}/bin/tmux source-file ${current}/tmux.conf 2>/dev/null || true
+
+      # Claude Code has no automatic theme; this applies when settings.json sets none
+      cfg=$HOME/.claude.json
+      if [ -f "$cfg" ] && [ "$(${pkgs.jq}/bin/jq -r .theme "$cfg")" != "$claude" ]; then
+        ${pkgs.jq}/bin/jq --arg t "$claude" '.theme = $t' "$cfg" > "$cfg.day-night" &&
+          chmod --reference="$cfg" "$cfg.day-night" &&
+          mv "$cfg.day-night" "$cfg"
+      fi
     }
 
     apply
@@ -191,6 +234,14 @@ in
   ''}";
 
   programs.zathura.extraConfig = "include ${current}/zathurarc";
+
+  programs.tmux.extraConfig = "source-file -q ${current}/tmux.conf";
+
+  home.sessionVariables.FZF_DEFAULT_OPTS_FILE = "${current}/fzfrc";
+
+  xdg.configFile."k9s/skins/day-night.yaml".source =
+    config.lib.file.mkOutOfStoreSymlink "${current}/k9s.yaml";
+  programs.k9s.settings.k9s.ui.skin = "day-night";
 
   # Sunrise and sunset for the switch above and for Night Light.
   sops.secrets.knighttime-latitude = { };

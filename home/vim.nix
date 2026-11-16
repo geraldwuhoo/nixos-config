@@ -130,8 +130,57 @@ in
       " Set colorscheme
       " ANSI colours follow ghostty's light/dark palette
       set notermguicolors
+
+      " nord puts text on ANSI 0/8 and draws it in 7/15, which only works on a
+      " dark palette. In light mode, swap those roles.
+      let s:fg = {'0': '15', '7': '0', '15': '0'}
+      let s:bg = {'0': '7', '8': '15'}
+      function! s:Light() abort
+        let l:mode = expand('~/.local/state/day-night/current/mode')
+        return filereadable(l:mode) && get(readfile(l:mode), 0, "") ==# 'light'
+      endfunction
+
+      " Runs again whenever the scheme reloads (:syntax on does that)
+      function! s:NordColors() abort
+        hi Normal guibg=NONE ctermbg=NONE
+        if !s:Light() | return | endif
+        for l:h in hlget()
+          let l:new = {}
+          if has_key(s:fg, get(l:h, 'ctermfg', ""))
+            let l:new.ctermfg = s:fg[l:h.ctermfg]
+          endif
+          if has_key(s:bg, get(l:h, 'ctermbg', ""))
+            let l:new.ctermbg = s:bg[l:h.ctermbg]
+          endif
+          if !empty(l:new)
+            call hlset([extend(l:h, l:new)])
+          endif
+        endfor
+      endfunction
+      augroup nord_colors
+        autocmd!
+        autocmd ColorScheme nord call s:NordColors()
+      augroup END
+
+      " airline bars also put 8 on accents
+      function! NordDayAirline(palette) abort
+        if g:airline_theme !=# 'nord' || has_key(a:palette, 'day') || !s:Light()
+          return
+        endif
+        let a:palette.day = {}
+        let l:fg = extend({'8': '15'}, s:fg)
+        for l:mode in values(a:palette)
+          for l:c in values(l:mode)
+            if type(l:c) == v:t_list && len(l:c) >= 4
+              let l:c[2] = get(l:fg, l:c[2], l:c[2])
+              let l:c[3] = get(s:bg, l:c[3], l:c[3])
+            endif
+          endfor
+        endfor
+      endfunction
+      let g:airline_theme_patch_func = 'NordDayAirline'
+
       colorscheme nord
-      hi Normal guibg=NONE ctermbg=NONE
 
       set sts=4
 

@@ -7,7 +7,6 @@
     settings = {
       model = "opus";
       effortLevel = "medium";
-      theme = "dark-ansi";
 
       env = {
         # Umbrella: telemetry, error reports, /feedback, updates, release notes, feature flags
