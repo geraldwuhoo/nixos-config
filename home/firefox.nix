@@ -5,6 +5,10 @@
   };
 
   config = lib.mkIf config.firefox.enable {
+    # userChrome.css imports these as chrome/<file>.css
+    home.file."${config.programs.firefox.configPath}/${config.programs.firefox.profiles.default.path}/chrome/chrome".source =
+      "${inputs.firefox-csshacks}/chrome";
+
     programs.firefox = {
       enable = true;
       configPath = ".mozilla/firefox";
@@ -12,6 +16,7 @@
         default = {
           path = "xb6yebs4.default";
           preConfig = builtins.readFile "${inputs.arkenfox}/user.js";
+          userChrome = ./files/firefox-userChrome.css;
           settings = {
             # New tab
             "browser.startup.page" = 1; # 0102
@@ -31,8 +36,11 @@
             "privacy.fingerprintingProtection" = true; # 4001
             "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme"; # 4002
 
-            # "System theme — auto" follows the GTK theme
+            # Default theme follows the portal's light/dark; GTK colours would pull in Nordic-Polar's dark headerbar
             "extensions.activeThemeID" = "default-theme@mozilla.org";
+            "browser.theme.native-theme" = false;
+            "devtools.theme" = "auto";
+            "widget.content.gtk-theme-override" = "";
 
             # Disable letterboxing
             "privacy.resistFingerprinting.letterboxing" = false; # 4504

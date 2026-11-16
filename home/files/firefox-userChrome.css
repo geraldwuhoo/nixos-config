@@ -1,0 +1,71 @@
+/* Example userChrome.css file */
+
+/* Import your desired components first */
+
+@import url(chrome/autohide_menubar.css);
+@import url(chrome/autohide_bookmarks_and_main_toolbars.css);
+@import url(chrome/hide_tabs_with_one_tab.css);
+@import url(chrome/hide_toolbox_top_bottom_borders.css);
+@import url(chrome/urlbar_centered_text.css);
+@import url(chrome/vertical_context_navigation.css);
+@import url(chrome/compact_proton.css);
+@import url(chrome/compact_urlbar_megabar.css);
+@import url(chrome/compact_extensions_panel.css);
+@import url(chrome/urlbar_container_color_border.css);
+
+/* Apply your custom modifications after imports */
+
+:root{
+  --uc-menu-bkgnd: var(--toolbar-bgcolor);
+  --tab-min-height: 24px !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --toolbar-bgcolor: rgb(46,52,64) !important;
+    --arrowpanel-background: var(--toolbar-bgcolor) !important;
+    --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
+    --uc-menu-disabled: rgb(90,90,90) !important;
+    --lwt-toolbar-field-focus: rgb(46,52,64) !important;
+  }
+  window.sidebar-panel{ --lwt-sidebar-background-color: rgb(36,44,59) !important; }
+}
+
+@media (prefers-color-scheme: light) {
+  :root{
+    --toolbar-bgcolor: rgb(236,239,244) !important;
+    --toolbar-color: rgb(46,52,64) !important;
+    --arrowpanel-background: var(--toolbar-bgcolor) !important;
+    --arrowpanel-color: rgb(46,52,64) !important;
+    --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
+    --uc-menu-disabled: rgb(160,168,183) !important;
+    --lwt-toolbar-field-focus: rgb(236,239,244) !important;
+  }
+  window.sidebar-panel{ --lwt-sidebar-background-color: rgb(229,233,240) !important; }
+}
+
+:root #tabbrowser-tabs { --tab-min-height: 24px !important; }
+
+:root[uidensity="compact"] #navigator-toolbox { --uc-navbar-height: -40px; }
+
+/* #TabsToolbar{ margin-bottom: -6px; } */
+
+.titlebar-spacer[type="pre-tabs"],
+.titlebar-spacer[type="post-tabs"] {
+    width: 0 !important;
+}
+
+#sidebar-box{ --sidebar-background-color: var(--toolbar-bgcolor) !important; }
+
+#alltabs-button {
+    display: none !important;
+}
+
+#urlbar {
+    text-align: center !important;
+}
+
+.tab-background{
+  outline: none !important;
+  box-shadow: none !important;
+}

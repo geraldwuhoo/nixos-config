@@ -25,6 +25,11 @@
       url = "github:arkenfox/user.js";
       flake = false;
     };
+
+    firefox-csshacks = {
+      url = "github:MrOtherGuy/firefox-csshacks";
+      flake = false;
+    };
   };
 
   outputs =
