@@ -11,8 +11,9 @@
       "sync.5.path" = "https://cloud.wuhoo.xyz/remote.php/webdav/Joplin";
       "sync.5.username" = "jerry";
       "locale" = "en_US";
-      "theme" = 6; # Nord theme
-      "themeAutoDetect" = false;
+      "themeAutoDetect" = true;
+      "preferredDarkTheme" = 6; # Nord
+      "preferredLightTheme" = 1; # Light
       "editor.codeView" = true;
       "editor.keyboardMode" = "vim";
     };

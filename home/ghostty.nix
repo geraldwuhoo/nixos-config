@@ -9,8 +9,13 @@ in
   programs.ghostty = {
     enable = true;
 
-    # alacritty's defaults, where ghostty's differ.
     settings = {
+      theme = "light:Nord Light,dark:Nord";
+      font-family = "DejaVuSansM Nerd Font";
+      font-size = 9;
+      background-opacity = 0.95;
+
+      # alacritty's defaults, where ghostty's differ.
       window-padding-x = 0;
       window-padding-y = 0;
       cursor-style-blink = false;

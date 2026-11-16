@@ -21,11 +21,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    stylix = {
-      url = "github:danth/stylix/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     arkenfox = {
       url = "github:arkenfox/user.js";
       flake = false;
@@ -40,7 +35,6 @@
       sops-nix,
       home-manager,
       plasma-manager,
-      stylix,
       ...
     }@inputs:
     let
@@ -90,7 +84,6 @@
               }
             )
             ./hosts/NixDesktop
-            stylix.nixosModules.stylix
 
             home-manager.nixosModules.home-manager
             (

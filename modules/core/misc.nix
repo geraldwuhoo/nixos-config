@@ -193,4 +193,9 @@
 
   # Get nerdfonts patched DejaVuSans package
   fonts.packages = with pkgs; [ pkgs.nerd-fonts.dejavu-sans-mono ];
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "DejaVu Sans" ];
+    serif = [ "DejaVu Serif" ];
+    monospace = [ "DejaVuSansM Nerd Font" ];
+  };
 }

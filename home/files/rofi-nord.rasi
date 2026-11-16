@@ -1,0 +1,45 @@
+/* Stylix's rofi layout; the colours it uses come from the day/night import. */
+* {
+  background-color: @background;
+  border-color: @foreground;
+  separatorcolor: @foreground;
+
+  normal-background: @background;
+  normal-foreground: @foreground;
+  active-background: @background;
+  active-foreground: @blue;
+  urgent-background: @background;
+  urgent-foreground: @red;
+
+  alternate-normal-background: @lightbg;
+  alternate-normal-foreground: @foreground;
+  alternate-active-background: @lightbg;
+  alternate-active-foreground: @blue;
+  alternate-urgent-background: @lightbg;
+  alternate-urgent-foreground: @red;
+
+  selected-normal-background: @lightfg;
+  selected-normal-foreground: @lightbg;
+  selected-active-background: @blue;
+  selected-active-foreground: @background;
+  selected-urgent-background: @red;
+  selected-urgent-foreground: @background;
+}
+
+window { background-color: @background; }
+listview, message, sidebar { border-color: @separatorcolor; }
+scrollbar { handle-color: @normal-foreground; }
+
+button, case-indicator, entry, inputbar, prompt, textbox { text-color: @normal-foreground; }
+button selected { background-color: @selected-normal-background; text-color: @selected-normal-foreground; }
+textbox-prompt-colon, element-icon, element-text { background-color: inherit; text-color: inherit; }
+
+element normal.normal { background-color: @normal-background; text-color: @normal-foreground; }
+element normal.active { background-color: @active-background; text-color: @active-foreground; }
+element normal.urgent { background-color: @urgent-background; text-color: @urgent-foreground; }
+element alternate.normal { background-color: @alternate-normal-background; text-color: @alternate-normal-foreground; }
+element alternate.active { background-color: @alternate-active-background; text-color: @alternate-active-foreground; }
+element alternate.urgent { background-color: @alternate-urgent-background; text-color: @alternate-urgent-foreground; }
+element selected.normal { background-color: @selected-normal-background; text-color: @selected-normal-foreground; }
+element selected.active { background-color: @selected-active-background; text-color: @selected-active-foreground; }
+element selected.urgent { background-color: @selected-urgent-background; text-color: @selected-urgent-foreground; }

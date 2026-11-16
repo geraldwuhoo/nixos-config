@@ -11,18 +11,12 @@ let
   };
 in
 {
-  # Stylix auto-theming is ass compared to the Nordic package
-  stylix.targets.kde.enable = false;
-  stylix.targets.qt.enable = false;
-
   programs.plasma = {
     enable = true;
 
+    # Colours and Plasma style switch with the time of day, see day-night.nix.
     workspace = {
-      theme = "Nordic";
-      colorScheme = "Nordic";
       # cursorTheme = "Nordzy-cursors";
-      lookAndFeel = "Nordic";
       iconTheme = "Zafiro-Icons-Blue";
     };
 
@@ -201,6 +195,8 @@ in
       kded5rc = {
         "Module-gtkconfig"."autoload" = false;
       };
+      # Nordic's global theme left kvantum-dark here, which isn't installed
+      kdeglobals.KDE.widgetStyle = "Breeze";
     };
   };
 

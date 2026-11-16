@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  # Stylix auto-theming is ass compared to the Nordic package
-  stylix.targets.vscodium.enable = false;
-
   programs.vscodium = {
     enable = true;
     # Use unstable Codium package + extensions for latest versions
@@ -46,6 +43,7 @@
 
         # Theming
         arcticicestudio.nord-visual-studio-code
+        huytd.nord-light
         pkief.material-icon-theme
 
         # Clanker
@@ -54,7 +52,9 @@
 
       userSettings = {
         # Theming
-        "workbench.colorTheme" = "Nord";
+        "window.autoDetectColorScheme" = true;
+        "workbench.preferredDarkColorTheme" = "Nord";
+        "workbench.preferredLightColorTheme" = "Nord Light";
         "workbench.iconTheme" = "material-icon-theme";
 
         # Mandatory for high refresh screens

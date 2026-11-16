@@ -27,7 +27,6 @@
     ./piper.nix
     ./psd.nix
     ./steam.nix
-    ./stylix.nix
     ./sunshine.nix
 
     # Misc

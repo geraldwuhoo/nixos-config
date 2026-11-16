@@ -20,5 +20,6 @@
   programs.rofi = {
     enable = true;
     plugins = with pkgs; [ rofi-calc ];
+    font = "DejaVuSansM Nerd Font 9";
   };
 }

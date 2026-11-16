@@ -2,6 +2,7 @@
 {
   imports = [
     ./claude-code.nix
+    ./day-night.nix
     ./deskflow.nix
     ./direnv.nix
     ./easyeffects.nix
@@ -102,10 +103,12 @@
 
   gtk = {
     enable = true;
-    theme = lib.mkForce {
+    theme = {
       name = "Nordic";
       package = pkgs.nordic;
     };
+    # A GTK4 theme would pin libadwaita apps to Nordic's dark CSS
+    gtk4.theme = null;
     font = {
       name = "DejaVu Sans";
       size = 9;
@@ -121,7 +124,6 @@
     url = "https://raw.githubusercontent.com/derailed/k9s/master/skins/nord.yaml";
     sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
   };
-  stylix.targets.k9s.enable = false;
   programs.k9s = {
     enable = true;
     package = pkgs.unstable.k9s;

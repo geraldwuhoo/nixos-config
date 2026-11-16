@@ -128,8 +128,9 @@ in
       # ffsend config
       FFSEND_HOST = "https://send.wuhoo.xyz";
 
-      # Bat theme config
-      BAT_THEME = "Nord";
+      # bat picks one from the terminal's background
+      BAT_THEME_DARK = "Nord";
+      BAT_THEME_LIGHT = "OneHalfLight";
 
       # Source all k8s configs
       KUBECONFIG = ''$(\ls ~/.kube | awk -v d="$HOME/.kube/" '/conf/ { printf "%s%s:", d,$0}')'';

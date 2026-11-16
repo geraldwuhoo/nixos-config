@@ -128,8 +128,9 @@ in
       map <Leader>o :Goyo \| set linebreak<CR>
 
       " Set colorscheme
+      " ANSI colours follow ghostty's light/dark palette
+      set notermguicolors
       colorscheme nord
-      " termguicolors is auto-enabled; nord's guibg would cover the terminal's opacity
       hi Normal guibg=NONE ctermbg=NONE
 
       set sts=4

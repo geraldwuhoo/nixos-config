@@ -5,9 +5,6 @@
   };
 
   config = lib.mkIf config.firefox.enable {
-    # Would inject font prefs into user.js
-    stylix.targets.firefox.enable = false;
-
     programs.firefox = {
       enable = true;
       configPath = ".mozilla/firefox";
@@ -28,6 +25,14 @@
             "privacy.clearOnShutdown_v2.siteSettings" = false; # 2803
             "privacy.clearOnShutdown_v2.cookiesAndStorage" = false; # 2803
             "privacy.clearSiteData.cookiesAndStorage" = false; # 2820
+
+            # FPP with every RFP target except prefers-color-scheme, so sites follow day/night
+            "privacy.resistFingerprinting" = false; # 4501
+            "privacy.fingerprintingProtection" = true; # 4001
+            "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme"; # 4002
+
+            # "System theme — auto" follows the GTK theme
+            "extensions.activeThemeID" = "default-theme@mozilla.org";
 
             # Disable letterboxing
             "privacy.resistFingerprinting.letterboxing" = false; # 4504
