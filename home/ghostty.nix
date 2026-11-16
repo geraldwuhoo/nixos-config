@@ -13,7 +13,8 @@ in
       theme = "light:Nord Day,dark:Nord";
       font-family = "DejaVuSansM Nerd Font";
       font-size = 9;
-      background-opacity = 0.95;
+      background-opacity = 0.9;
+      background-blur = true;
 
       # alacritty's defaults, where ghostty's differ.
       window-padding-x = 0;

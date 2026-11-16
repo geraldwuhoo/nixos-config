@@ -129,6 +129,7 @@ in
           "WobblynessLevel".value = 1;
         };
         Effect-hidecursor."InactivityDuration".value = 3;
+        Effect-blur."BlurStrength".value = 5;
         Plugins = {
           "krohnkiteEnabled".value = true;
           "blurEnabled".value = true;
