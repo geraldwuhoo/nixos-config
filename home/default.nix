@@ -2,6 +2,7 @@
 {
   imports = [
     ./claude-code.nix
+    ./deskflow.nix
     ./direnv.nix
     ./easyeffects.nix
     ./eza.nix
