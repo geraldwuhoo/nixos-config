@@ -123,12 +123,44 @@ let
     url = "https://raw.githubusercontent.com/derailed/k9s/master/skins/nord.yaml";
     sha256 = "1qbmfxjjaa0xzj2p5x0yb60pdn3yzrx8dsrpmrfzz2h8kmj8ipll";
   };
-  k9sNordDay = pkgs.writeText "k9s-nord-day.yaml" (
+  k9sNordDaySwapped = pkgs.writeText "k9s-nord-day-swapped.yaml" (
     builtins.replaceStrings
       [ "#DADEE8" "#30343F" "#383D4A" "#D9DEE8" "#8891A7" "#88C0D0" "#A3BE8C" "#D08770" "#81A1C1" "#B48EAD" "#BF616A" "#EBCB8B" ]
-      [ "#2E3440" "#E5E9F0" "#C2CAD8" "#4C566A" "#616E88" "#2C687A" "#4F6939" "#9D492E" "#44648B" "#815379" "#A73E48" "#7F5B11" ]
+      [ "#2E3440" "#E5E9F0" "#C2CAD8" "#4C566A" "#4C566A" "#2C687A" "#4F6939" "#9D492E" "#44648B" "#815379" "#A73E48" "#7F5B11" ]
       (builtins.readFile k9sNord)
   );
+  # The nord skin leaves these unset, and k9s's defaults are made for dark backgrounds.
+  k9sNordDay = pkgs.runCommand "k9s-nord-day.yaml" { nativeBuildInputs = [ pkgs.yq-go ]; } ''
+    yq '
+      .k9s.views.table.cursorFgColor = "#ECEFF4" |
+      .k9s.views.table.cursorBgColor = "#44648B" |
+      .k9s.views.table.markColor = "#4F6939" |
+      .k9s.views.table.header.selectedSortColumnColor = "#2C687A" |
+      .k9s.views.xray.cursorTextColor = "#2E3440" |
+      .k9s.views.charts.dialBgColor = "default" |
+      .k9s.views.charts.chartBgColor = "default" |
+      .k9s.views.charts.focusFgColor = "#ECEFF4" |
+      .k9s.views.charts.focusBgColor = "#9D492E" |
+      .k9s.views.logs.indicator.toggleOffColor = "#4C566A" |
+      .k9s.help.fgColor = "#2E3440" |
+      .k9s.help.bgColor = "default" |
+      .k9s.help.sectionColor = "#4F6939" |
+      .k9s.help.keyColor = "#44648B" |
+      .k9s.help.numKeyColor = "#815379" |
+      .k9s.frame.status.pendingColor = "#9D492E" |
+      .k9s.frame.border.focusColor = "#44648B" |
+      .k9s.prompt.border.default = "#4F6939" |
+      .k9s.prompt.border.command = "#2C687A" |
+      .k9s.info.cpuColor = "#4F6939" |
+      .k9s.info.memColor = "#2C687A" |
+      .k9s.info.k9sRevColor = "#2C687A" |
+      .k9s.dialog.buttonFgColor = "#ECEFF4" |
+      .k9s.dialog.buttonFocusFgColor = "#ECEFF4" |
+      .k9s.views.picker.mainColor = "#2E3440" |
+      .k9s.views.picker.focusColor = "#44648B" |
+      .k9s.views.picker.shortcutColor = "#44648B"
+    ' ${k9sNordDaySwapped} > $out
+  '';
 
   nordTmux = "${pkgs.tmuxPlugins.nord}/share/tmux-plugins/nord/src";
   prefixHighlight = "${pkgs.tmuxPlugins.prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux";
