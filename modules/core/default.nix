@@ -22,7 +22,7 @@
     ./virtualisation.nix
 
     # Niceties
-    ./barrier.nix
+    ./deskflow.nix
     ./mullvad.nix
     ./piper.nix
     ./psd.nix
