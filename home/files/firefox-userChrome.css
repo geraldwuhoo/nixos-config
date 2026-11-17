@@ -1,7 +1,3 @@
-/* Example userChrome.css file */
-
-/* Import your desired components first */
-
 @import url(chrome/autohide_menubar.css);
 @import url(chrome/autohide_bookmarks_and_main_toolbars.css);
 @import url(chrome/hide_tabs_with_one_tab.css);
@@ -13,49 +9,51 @@
 @import url(chrome/compact_extensions_panel.css);
 @import url(chrome/urlbar_container_color_border.css);
 
-/* Apply your custom modifications after imports */
-
+/* Firefox 160 variable names; the pre-Proton ones (--toolbar-bgcolor etc.) are ignored now.
+   light-dark(light, dark) follows the system scheme, like Firefox's own tokens. */
 :root{
-  --uc-menu-bkgnd: var(--toolbar-bgcolor);
-  --tab-min-height: 24px !important;
+  /* Nova paints a violet/orange gradient over the toolbox colour */
+  --toolbox-background-image: none !important;
+  --toolbox-background-gradient: none !important;
+  --toolbox-background-color: light-dark(#d8dee9, #242933) !important;
+  --toolbox-background-color-inactive: var(--toolbox-background-color) !important;
+  --toolbox-text-color: light-dark(#2e3440, #eceff4) !important;
+  --toolbox-text-color-inactive: var(--toolbox-text-color) !important;
+  --toolbar-background-color: light-dark(#e5e9f0, #2e3440) !important;
+  --toolbar-text-color: var(--toolbox-text-color) !important;
+  --toolbar-field-background-color: light-dark(#eceff4, #3b4252) !important;
+  --toolbar-field-background-color-focus: var(--toolbar-field-background-color) !important;
+  --toolbar-field-text-color: var(--toolbox-text-color) !important;
+  --toolbar-field-text-color-focus: var(--toolbox-text-color) !important;
+  /* Nova's theme layer sets these apart from the toolbar */
+  --tab-background-color-selected: var(--toolbar-background-color) !important;
+  --tab-text-color-selected: var(--toolbox-text-color) !important;
+  /* Nova's selected-tab outline is a gradient between these two; light ones are Nord Day's from ghostty.nix */
+  --tab-border-color-selected-leading: light-dark(#2c687a, #88c0d0) !important;
+  --tab-border-color-selected-trailing: light-dark(#44648b, #5e81ac) !important;
+  --panel-background-color: var(--toolbar-background-color) !important;
+  --panel-text-color: var(--toolbox-text-color) !important;
+  --sidebar-background-color: var(--toolbar-background-color) !important;
+  --sidebar-text-color: var(--toolbox-text-color) !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root{
-    --toolbar-bgcolor: rgb(46,52,64) !important;
-    --arrowpanel-background: var(--toolbar-bgcolor) !important;
-    --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
-    --uc-menu-disabled: rgb(90,90,90) !important;
-    --lwt-toolbar-field-focus: rgb(46,52,64) !important;
-  }
-  window.sidebar-panel{ --lwt-sidebar-background-color: rgb(36,44,59) !important; }
+/* Compact mode sets the height on .tabbrowser-tab too, which beats inheriting from :root */
+:root, .tabbrowser-tab {
+  --tab-min-height: 20px !important;
+  /* compact_proton.css still sets the old --tab-block-margin name */
+  --tab-margin-block: 0px !important;
+  /* Container line sits 3px down, over the favicon at this height */
+  --tab-context-line-block-offset: 1px !important;
 }
 
-@media (prefers-color-scheme: light) {
-  :root{
-    --toolbar-bgcolor: rgb(236,239,244) !important;
-    --toolbar-color: rgb(46,52,64) !important;
-    --arrowpanel-background: var(--toolbar-bgcolor) !important;
-    --arrowpanel-color: rgb(46,52,64) !important;
-    --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
-    --uc-menu-disabled: rgb(160,168,183) !important;
-    --lwt-toolbar-field-focus: rgb(236,239,244) !important;
-  }
-  window.sidebar-panel{ --lwt-sidebar-background-color: rgb(229,233,240) !important; }
-}
-
-:root #tabbrowser-tabs { --tab-min-height: 24px !important; }
-
-:root[uidensity="compact"] #navigator-toolbox { --uc-navbar-height: -40px; }
-
-/* #TabsToolbar{ margin-bottom: -6px; } */
+/* Firefox only sizes tab strip buttons to the tabs above 900px wide; below that
+   compact_proton.css's 6px padding makes them 28px tall and stretches the strip */
+#TabsToolbar { --toolbarbutton-padding-inner: calc((var(--tab-min-height) - 16px) / 2) !important; }
 
 .titlebar-spacer[type="pre-tabs"],
 .titlebar-spacer[type="post-tabs"] {
     width: 0 !important;
 }
-
-#sidebar-box{ --sidebar-background-color: var(--toolbar-bgcolor) !important; }
 
 #alltabs-button {
     display: none !important;
@@ -63,9 +61,4 @@
 
 #urlbar {
     text-align: center !important;
-}
-
-.tab-background{
-  outline: none !important;
-  box-shadow: none !important;
 }

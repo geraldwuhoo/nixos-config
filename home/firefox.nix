@@ -42,6 +42,10 @@
             "devtools.theme" = "auto";
             "widget.content.gtk-theme-override" = "";
 
+            # Compact density, which userChrome.css builds on
+            "browser.compactmode.show" = true;
+            "browser.uidensity" = 1;
+
             # Disable letterboxing
             "privacy.resistFingerprinting.letterboxing" = false; # 4504
 
